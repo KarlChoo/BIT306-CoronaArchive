@@ -7,6 +7,14 @@
 }
 
 mat-sidenav {
-    width: 300px;
-    background-color: blue;
+  width: 300px;
+  padding: 0;
+}
+
+mat-sidenav button{
+  width: 100%;
+  padding: 15px 0;
+  color: black;
+  font-weight: bold;
+  background-color: none!important;
 }
