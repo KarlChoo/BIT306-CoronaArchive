@@ -11,10 +11,15 @@ mat-sidenav {
   padding: 0;
 }
 
+mat-sidenav img{
+    width: 100%;
+    height: auto;
+}
+
 mat-sidenav button{
   width: 100%;
   padding: 15px 0;
   color: black;
   font-weight: bold;
-  background-color: none!important;
+  border: 0;
 }
