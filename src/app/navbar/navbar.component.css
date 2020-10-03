@@ -1,4 +1,4 @@
-.example-container {
+.sidenav-container {
   top: 0;
   bottom: 0;
   left: 0;
@@ -6,8 +6,8 @@
   height: 91%;
 }
 
-mat-sidenav {
-  width: 300px;
+mat-sidenav{
+  width: 250px;
   padding: 0;
 }
 
