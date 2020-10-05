@@ -3,12 +3,13 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 91%;
+  height: 100%;
 }
 
 mat-sidenav{
   width: 250px;
-  padding: 0;
+  padding-top: 0%;
+  background-color:#15545bff;
 }
 
 mat-sidenav img{
@@ -19,7 +20,18 @@ mat-sidenav img{
 mat-sidenav button{
   width: 100%;
   padding: 15px 0;
-  color: black;
-  font-weight: bold;
+  color: white;
   border: 0;
+  background-color:#15545bff;
+}
+
+#profileInfo{
+  text-align: center;
+  color: #fff;
+  padding-top: 10%;
+  padding-bottom: 20%;
+}
+
+.mat-divider{
+  background-color: #fff;
 }
