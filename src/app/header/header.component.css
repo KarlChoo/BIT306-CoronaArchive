@@ -1,3 +1,13 @@
 #sidenavButton{
     margin-right: 20px;
 }
+
+#header{
+  position: fixed;
+  background-color: #fff;
+}
+
+#logo{
+  color:#0097a7ce;
+  font-size: x-large;
+}

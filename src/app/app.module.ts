@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { RegisterTestCenterComponent } from './content/test-center/register-test-center/register-test-center.component';
 import { DashboardComponent } from './content/dashboard/dashboard/dashboard.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 //Material imports here
@@ -17,6 +18,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from "@angular/material/table";
 
+import {MatDividerModule} from '@angular/material/divider';
+import { BranchpanelComponent } from './branchpanel/branchpanel.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,8 @@ import { MatTableModule } from "@angular/material/table";
     MainComponent,
     RegisterTestCenterComponent,
     DashboardComponent,
+    FooterComponent,
+    BranchpanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,8 @@ import { MatTableModule } from "@angular/material/table";
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
