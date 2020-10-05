@@ -3,6 +3,7 @@
 }
 
 #header{
+  position: fixed;
   background-color: #fff;
 }
 

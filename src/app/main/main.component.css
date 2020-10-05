@@ -7,6 +7,7 @@
 }
 
 mat-sidenav{
+  position: fixed;
   width: 250px;
   padding-top: 0%;
   background-color:#15545bff;

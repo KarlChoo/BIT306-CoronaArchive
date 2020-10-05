@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
+import { BranchpanelComponent } from './branchpanel/branchpanel.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {MatDividerModule} from '@angular/material/divider';
     HeaderComponent,
     MainComponent,
     FooterComponent,
+    BranchpanelComponent,
   ],
   imports: [
     BrowserModule,
