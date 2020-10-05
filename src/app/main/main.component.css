@@ -1,9 +1,9 @@
-.container {
+.app-container {
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 91%;
+  height: 100%;
 }
 
 mat-sidenav{
@@ -22,4 +22,12 @@ mat-sidenav button{
   color: black;
   font-weight: bold;
   border: 0;
+}
+
+
+/**
+Content
+**/
+.content-container{
+  margin: 25px;
 }
