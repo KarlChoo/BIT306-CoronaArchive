@@ -1,0 +1,28 @@
+mat-card{
+  width: 92%;
+  opacity: 0.9;
+}
+
+form mat-form-field{
+  width: 100%;
+}
+
+.content-divider{
+  margin: 20px 0;
+}
+
+#testerTable{
+  width: 100%;
+}
+
+.edit-btn{
+  background-color: #e9ec06!important;
+}
+
+.action-btn{
+  margin-left: 10px!important;
+}
+
+.w-200{
+  width: 200px!important;
+}
