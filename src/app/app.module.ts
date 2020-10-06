@@ -16,6 +16,9 @@ import { FooterComponent } from './footer/footer.component';
 import { BranchpanelComponent } from './branchpanel/branchpanel.component';
 import { RecordTestCenterOfficerComponent } from './content/record-test-center-officer/record-test-center-officer.component';
 
+//Dylan's Components
+//import { ResultComponent } from './content/result/result.component';
+//import { CentresComponent } from './content/centres/centres.component';
 
 //Material imports here
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -33,6 +36,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/manage-test-kit-stock.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +48,7 @@ import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/man
     BranchpanelComponent,
     RecordTestCenterOfficerComponent,
     ManageTestKitStockComponent,
+     //routing
   ],
   imports: [
     BrowserModule,
