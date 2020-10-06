@@ -6,8 +6,8 @@
       <a>Edit Profile</a>
     </div>
     <mat-divider></mat-divider>
-    <button mat-raised-button>Result</button>
-    <button mat-raised-button>Centres</button>
+    <button mat-raised-button routerLink="/resultPage">Result</button>
+    <button mat-raised-button routerLink="/centresPage">Centres</button>
     <button mat-raised-button>New Test</button>
     <button mat-raised-button>Update Test</button>
     <button mat-raised-button>Report</button>
@@ -21,6 +21,9 @@
     <app-header (sidenavEvent)="toggleSidenav()"></app-header>
     <div class="content-container">
       <app-register-test-center></app-register-test-center>
+    </div>
+    <div class="content-container">
+     <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>
   </mat-sidenav-content>
