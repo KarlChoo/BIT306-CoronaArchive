@@ -28,21 +28,9 @@
               </mat-select>
             </mat-form-field>
 
-            <section class="symptoms">
-              <span>
-                <ol>
-                  <li *ngFor="let symptom of symptom">
-                    <mat-checkbox color="primary">
-                      {{symptom.symptomName}}
-                    </mat-checkbox>
-                  </li>
-                </ol>
-              </span>
-            </section>
-
             <mat-form-field>
               <mat-label>Additional Remark(s) Optional</mat-label>
-              <textarea matInput rows="4" name="symptom" ngModel #content="ngModel"></textarea>
+              <textarea matInput rows="4" name="symptom" ngModel required #content="ngModel"></textarea>
             </mat-form-field>
         </mat-card-content>
         <mat-card-actions align="center">
@@ -76,21 +64,9 @@
               </mat-select>
             </mat-form-field>
 
-            <section class="symptoms">
-              <span>
-                <ol>
-                  <li *ngFor="let symptom of symptom">
-                    <mat-checkbox color="primary">
-                      {{symptom.symptomName}}
-                    </mat-checkbox>
-                  </li>
-                </ol>
-              </span>
-            </section>
-
             <mat-form-field>
-              <mat-label>Additional Remark(s) Optional</mat-label>
-              <textarea matInput rows="3" name="symptom" ngModel #content="ngModel"></textarea>
+              <mat-label>Additional Remark(s)</mat-label>
+              <textarea matInput rows="3" name="symptom" ngModel required #content="ngModel"></textarea>
             </mat-form-field>
         </mat-card-content>
         <mat-card-actions align="center">
