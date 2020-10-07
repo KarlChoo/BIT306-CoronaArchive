@@ -20,6 +20,7 @@ import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/man
 //Dylan's Components
 import { ResultComponent } from './content/result/result.component';
 import { CentresComponent } from './content/centres/centres.component';
+import { TestComponent } from './content/test/test.component';
 
 //Material imports here
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -45,9 +46,10 @@ import { MatSortModule } from '@angular/material/sort';
     DashboardComponent,
     FooterComponent,
     RecordTestCenterOfficerComponent,
-    ManageTestKitStockComponent,
     ResultComponent,
-    CentresComponent //routing
+    CentresComponent,
+    TestComponent,
+    ManageTestKitStockComponent //routing
   ],
   imports: [
     BrowserModule,
