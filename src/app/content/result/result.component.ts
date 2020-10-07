@@ -36,6 +36,6 @@ export class ResultComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['testNo', 'centreName', 'kitID', 'testDate','result'];
-  dataSource = ELEMENT_DATA;
+  resultDataSource = ELEMENT_DATA;
 
 }
