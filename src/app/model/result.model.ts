@@ -1,7 +1,8 @@
 export interface PatientResult {
   testNo: number;
+  testID: string;
   centreName: string;
-  kitID: string;
   testDate: string;
+  status: string;
   result: string;
 }
