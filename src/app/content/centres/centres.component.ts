@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Centres } from "../../model/centres.model";
 
-export interface centres {
-  centreID: string;
-  centreName: string;
-  opTime: string;
-}
-
-const ELEMENT_DATA: centres[] = [
+const ELEMENT_DATA: Centres[] = [
   {centreID: 'C0001', centreName: 'Puchong', opTime: '0900-1800'},
   {centreID: 'C0002', centreName: 'Setapak', opTime: '0900-1800'},
   {centreID: 'C0003', centreName: 'PJ', opTime: '0900-1800'},

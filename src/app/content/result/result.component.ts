@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { PatientResult } from "../../model/result.model";
 
-
-export interface patientResult {
-  testNo: number;
-  centreName: string;
-  kitID: string;
-  testDate: string;
-  result: string;
-}
-
-const ELEMENT_DATA: patientResult[] = [
+const ELEMENT_DATA: PatientResult[] = [
   {testNo: 1, centreName: 'Puchong', kitID: 'K001', testDate: '01/01/2020', result: 'positive'},
   {testNo: 2, centreName: 'Setapak', kitID: 'K001', testDate: '01/01/2020', result: 'positive'},
   {testNo: 3, centreName: 'Setapak', kitID: 'K001', testDate: '01/01/2020', result: 'positive'},
