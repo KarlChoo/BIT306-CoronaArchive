@@ -18,8 +18,9 @@ import { RecordTestCenterOfficerComponent } from './content/record-test-center-o
 import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/manage-test-kit-stock.component';
 
 //Dylan's Components
-//import { ResultComponent } from './content/result/result.component';
-//import { CentresComponent } from './content/centres/centres.component';
+import { ResultComponent } from './content/result/result.component';
+import { CentresComponent } from './content/centres/centres.component';
+import { TestComponent } from './content/test/test.component';
 
 //Material imports here
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -45,6 +46,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     DashboardComponent,
     FooterComponent,
     RecordTestCenterOfficerComponent,
+    ResultComponent,
+    CentresComponent,
+    TestComponent,
     ManageTestKitStockComponent //routing
   ],
   imports: [
