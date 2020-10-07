@@ -13,6 +13,7 @@ import { RecordTestCenterOfficerComponent } from './content/record-test-center-o
 const routes: Routes = [
   {path: 'resultPage', component: ResultComponent},
   {path: 'centresPage', component: CentresComponent},
+  {path: 'newTest', component: TestComponent},
   {path: 'tester', component: RecordTestCenterOfficerComponent}
 ];
 
