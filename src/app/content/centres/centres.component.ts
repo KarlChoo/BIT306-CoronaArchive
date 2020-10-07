@@ -32,6 +32,6 @@ export class CentresComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['centreID', 'centreName', 'opTime'];
-  dataSource = ELEMENT_DATA;
+  centreDataSource = ELEMENT_DATA;
 
 }
