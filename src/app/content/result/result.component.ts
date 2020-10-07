@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 export interface patientResult {
   testNo: number;

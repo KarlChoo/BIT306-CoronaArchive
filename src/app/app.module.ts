@@ -5,7 +5,7 @@ import { Router, Routes, RouterModule } from "@angular/router";
 
 
 //Own components here
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
@@ -48,7 +48,7 @@ import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/man
     BranchpanelComponent,
     RecordTestCenterOfficerComponent,
     ManageTestKitStockComponent,
-     //routing
+    RoutingComponents //routing
   ],
   imports: [
     BrowserModule,
