@@ -10,9 +10,6 @@ import { MainComponent } from './main/main.component';
 import { RegisterTestCenterComponent } from './content/test-center/register-test-center/register-test-center.component';
 import { DashboardComponent } from './content/dashboard/dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
-//Dylan's Components
-//import { ResultComponent } from './content/result/result.component';
-//import { CentresComponent } from './content/centres/centres.component';
 
 //Material imports here
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -21,6 +18,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from "@angular/material/table";
 import { MatDividerModule } from '@angular/material/divider';
+import {MatTabsModule} from '@angular/material/tabs';
+
+
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { MatDividerModule } from '@angular/material/divider';
     RegisterTestCenterComponent,
     DashboardComponent,
     FooterComponent,
-    routingComponents //routing
+    routingComponents
   ],
   imports: [
     BrowserModule,
@@ -42,7 +42,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatSidenavModule,
     MatTableModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
