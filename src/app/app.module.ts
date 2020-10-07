@@ -5,7 +5,7 @@ import { Router, Routes, RouterModule } from "@angular/router";
 
 
 //Own components here
-import { AppRoutingModule, RoutingComponents } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
@@ -13,8 +13,9 @@ import { MainComponent } from './main/main.component';
 import { RegisterTestCenterComponent } from './content/register-test-center/register-test-center.component';
 import { DashboardComponent } from './content//dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
-import { BranchpanelComponent } from './branchpanel/branchpanel.component';
+//import { BranchpanelComponent } from './branchpanel/branchpanel.component';
 import { RecordTestCenterOfficerComponent } from './content/record-test-center-officer/record-test-center-officer.component';
+import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/manage-test-kit-stock.component';
 
 //Dylan's Components
 //import { ResultComponent } from './content/result/result.component';
@@ -33,9 +34,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/manage-test-kit-stock.component';
-
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -45,10 +44,8 @@ import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/man
     RegisterTestCenterComponent,
     DashboardComponent,
     FooterComponent,
-    BranchpanelComponent,
     RecordTestCenterOfficerComponent,
-    ManageTestKitStockComponent,
-    RoutingComponents //routing
+    ManageTestKitStockComponent //routing
   ],
   imports: [
     BrowserModule,
@@ -66,7 +63,8 @@ import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/man
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

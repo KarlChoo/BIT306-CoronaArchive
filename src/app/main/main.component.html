@@ -12,7 +12,7 @@
     <button mat-raised-button>Update Test</button>
     <button mat-raised-button>Report</button>
     <button mat-raised-button>Dashboard</button>
-    <button mat-raised-button>Register Tester</button>
+    <button mat-raised-button routerLink="/tester">Register Tester</button>
     <button mat-raised-button>Register Centre</button>
     <button mat-raised-button>Logout</button>
   </mat-sidenav>
@@ -20,7 +20,7 @@
   <mat-sidenav-content>
     <app-header (sidenavEvent)="toggleSidenav()"></app-header>
     <div class="content-container">
-     <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>
   </mat-sidenav-content>
