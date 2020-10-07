@@ -18,13 +18,14 @@ import { RecordTestCenterOfficerComponent } from './content/record-test-center-o
 import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/manage-test-kit-stock.component';
 
 //Dylan's Components
-//import { ResultComponent } from './content/result/result.component';
-//import { CentresComponent } from './content/centres/centres.component';
+import { ResultComponent } from './content/result/result.component';
+import { CentresComponent } from './content/centres/centres.component';
 
 //Material imports here
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from "@angular/material/table";
 import { MatDividerModule } from '@angular/material/divider';
@@ -34,7 +35,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     DashboardComponent,
     FooterComponent,
     RecordTestCenterOfficerComponent,
-    ManageTestKitStockComponent //routing
+    ManageTestKitStockComponent,
+    ResultComponent,
+    CentresComponent //routing
   ],
   imports: [
     BrowserModule,
