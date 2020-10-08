@@ -7,9 +7,7 @@ import { Test } from 'src/app/model/Test.model';
 export class TestsService {
 
   constructor() { }
-  private testLists: Test[] = [
-
-  ];
+  private testLists: Test[] = [];
 
   getTestList(){
     return this.testLists;

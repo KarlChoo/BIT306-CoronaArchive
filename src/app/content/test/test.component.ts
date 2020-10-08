@@ -4,6 +4,7 @@ import { NgForm } from "@angular/forms";
 import { Test } from "../../model/Test.model";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { TestsService } from "./tests.service";
 
 @Component({
   selector: 'app-test',
@@ -11,17 +12,18 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit, AfterViewInit {
-  constructor() {  }
-  ngOnInit(): void {
-  }
 
   //tests array
   testList: Test[] = [];
 
+  constructor(public testService:TestsService) { }
+  ngOnInit(): void {
+    this.testList = this.testService.getTestList();
+  }
+
   //bind with table
   displayedColumns: string[] = ['testID', 'testDate', 'username', 'patientType','symptom','status','result','update'];
-  dataSource = new MatTableDataSource<Test>(this.testList);
-
+  dataSource = new MatTableDataSource<Test>(this.testService.getTestList());
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -48,7 +50,7 @@ export class TestComponent implements OnInit, AfterViewInit {
         symptom: formData.value.symptom,
         status: "Pending"
       }
-      this.testList.push(newTest);
+      this.testService.addNewTest(newTest);
       console.log(this.testList);
       formData.resetForm();
       this.refreshTable();
@@ -77,7 +79,7 @@ export class TestComponent implements OnInit, AfterViewInit {
       symptom: formData.value.symptom,
       status: "Pending"
     }
-    this.testList.push(newTest);
+    this.testService.addNewTest(newTest);
     console.log(this.testList);
     formData.resetForm();
     this.refreshTable();
