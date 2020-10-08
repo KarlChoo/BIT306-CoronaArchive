@@ -1,0 +1,24 @@
+mat-card{
+  width: 92%;
+  opacity: 0.9;
+}
+
+form mat-form-field{
+  width: 100%;
+}
+
+.content-divider{
+  margin: 20px 0;
+}
+
+#testerTable{
+  width: 100%;
+}
+
+.w-200{
+  width: 200px!important;
+}
+
+.mat-form-field-wrapper{
+  padding-bottom: 0!important;
+}

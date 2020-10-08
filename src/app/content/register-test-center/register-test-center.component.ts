@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register-test-center',
@@ -12,4 +13,9 @@ export class RegisterTestCenterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  registerTestCenter(formData: NgForm){
+    if(formData.invalid){
+      return;
+    }
+  }
 }

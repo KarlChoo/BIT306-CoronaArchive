@@ -1,4 +1,4 @@
-<mat-table [dataSource]="resultDataSource" class="mat-elevation-z8" style="width:100%!important">
+<table mat-table [dataSource]="resultDataSource" class="mat-elevation-z8">
 
   <!-- Test Column -->
   <ng-container matColumnDef="testNo">
@@ -32,4 +32,4 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</mat-table>
+</table>

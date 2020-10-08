@@ -1,3 +1,4 @@
+<app-header (sidenavEvent)="toggleSidenav()"></app-header>
 <mat-sidenav-container class="app-container">
   <mat-sidenav #sidenav mode="side" [opened]="isOpened">
     <div id="profileInfo">
@@ -13,12 +14,13 @@
     <button mat-raised-button>Report</button>
     <button mat-raised-button>Dashboard</button>
     <button mat-raised-button routerLink="/tester">Register Tester</button>
-    <button mat-raised-button>Register Centre</button>
+    <button mat-raised-button routerLink="/testkit">Test Kits</button>
+    <button mat-raised-button routerLink="/register">Register Centre</button>
     <button mat-raised-button>Logout</button>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <app-header (sidenavEvent)="toggleSidenav()"></app-header>
+    <!--app-header (sidenavEvent)="toggleSidenav()"></app-header> -->
     <div class="content-container">
       <router-outlet></router-outlet>
     </div>
