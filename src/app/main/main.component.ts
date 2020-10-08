@@ -12,9 +12,31 @@ export class MainComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.sideNavButtonAddEvent()
   }
 
   toggleSidenav(){
     this.isOpened = !this.isOpened;
+  }
+
+  sideNavButtonAddEvent(){
+    let sidenavButtons = document.querySelector("#sidenav").querySelectorAll("button");
+    sidenavButtons.forEach(button => {
+        button.addEventListener("click", () =>{
+            this.setButtonActive(button);
+        })
+    });
+  }
+
+  removeAllButtonActive(){
+    let sidenavButtons = document.querySelector("#sidenav").querySelectorAll("button");
+    sidenavButtons.forEach(button => {
+      button.classList.remove("active");
+    })
+  }
+
+  setButtonActive(btn){
+    this.removeAllButtonActive();
+    btn.classList.add("active");
   }
 }

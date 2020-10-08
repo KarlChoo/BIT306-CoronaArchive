@@ -38,6 +38,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule}  from '@angular/material/checkbox';
 import { LoginComponent } from './login/login.component';
+import { ReportComponent } from './content/report/report.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { LoginComponent } from './login/login.component';
     CentresComponent,
     TestComponent,
     ManageTestKitStockComponent,
-    LoginComponent //routing
+    LoginComponent,
+    ReportComponent //routing
   ],
   imports: [
     BrowserModule,
