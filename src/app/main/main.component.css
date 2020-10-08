@@ -26,6 +26,7 @@ mat-sidenav{
   position: fixed;
   width: 250px;
   padding-top: 0%;
+  margin-top: 64px;
   background-color:#15545bff;
 }
 
@@ -52,7 +53,6 @@ mat-sidenav button{
   background-color: #fff;
 }
 
-
 /**
 *
 *
@@ -61,6 +61,7 @@ mat-sidenav button{
 *
 **/
 
+
 .content-container{
   margin: 25px;
   margin-top: 100px;
@@ -68,4 +69,5 @@ mat-sidenav button{
   background-repeat: no-repeat;
   background-position: right bottom;
   background-size: 50% auto;
+  min-height: 70vh;
 }

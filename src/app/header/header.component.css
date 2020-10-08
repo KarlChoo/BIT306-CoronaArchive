@@ -5,9 +5,21 @@
 #header{
   position: fixed;
   background-color: #fff;
+  z-index:10!important;
 }
 
 #logo{
   color:#0097a7ce;
   font-size: x-large;
+}
+
+#loginBtn{
+  background-color: #15545bff;
+  color: white;
+}
+
+#registerBtn{
+  margin-left: 20px;
+  background-color: #15545bff;
+  color: white;
 }

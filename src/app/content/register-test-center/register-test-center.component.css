@@ -1,0 +1,13 @@
+#register-container{
+  width: 500px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+form mat-form-field{
+  width: 100%;
+}
+
+@media only screen and (max-width: 780px){
+  #register-container{width: 95%;}
+}
