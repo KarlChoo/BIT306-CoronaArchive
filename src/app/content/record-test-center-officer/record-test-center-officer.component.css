@@ -26,3 +26,8 @@ form mat-form-field{
 .w-200{
   width: 200px!important;
 }
+
+th{
+  color: #0097a7ce;
+  font-size: medium;
+}

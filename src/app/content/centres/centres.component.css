@@ -2,3 +2,8 @@ table {
   width: 100%;
   opacity: 0.9;
 }
+
+th{
+  color: #0097a7ce;
+  font-size: medium;
+}

@@ -1,4 +1,10 @@
 table {
   width: 100%;
   opacity: 0.9;
+  color: black;
+}
+
+th{
+  color: #0097a7ce;
+  font-size: medium;
 }
