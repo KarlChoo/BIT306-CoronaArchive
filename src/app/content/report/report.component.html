@@ -27,9 +27,49 @@
 
 <mat-card class="mat-elevation-z8" style="margin-top:20px">
   <mat-card-header>
-    <mat-card-title></mat-card-title>
+    <mat-card-title>Test History</mat-card-title>
   </mat-card-header>
-  <mat-drawer-content>
+  <mat-card-content>
+    <table id="updateTestTable" mat-table [dataSource]="dataSource" *ngIf="this.testList.length > 0" class="mat-elevation-z8">
+      <!-- TestID Column -->
+      <ng-container matColumnDef="testID">
+        <th mat-header-cell *matHeaderCellDef> Test ID </th>
+        <td mat-cell *matCellDef="let test"> {{test.testID}} </td>
+      </ng-container>
+      <!-- Date Column -->
+      <ng-container matColumnDef="testDate">
+        <th mat-header-cell *matHeaderCellDef> Test Date and Time</th>
+        <td mat-cell *matCellDef="let test"> {{test.testDate}} </td>
+      </ng-container>
+      <!-- username Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let test"> {{test.username}} </td>
+      </ng-container>
+      <!-- patient type Column -->
+      <ng-container matColumnDef="patientType">
+        <th mat-header-cell *matHeaderCellDef> Patient Type </th>
+        <td mat-cell *matCellDef="let test"> {{test.patientType}} </td>
+      </ng-container>
+      <!-- symptom Column -->
+      <ng-container matColumnDef="symptom">
+        <th mat-header-cell *matHeaderCellDef> Symptom(s) </th>
+        <td mat-cell *matCellDef="let test"> {{test.symptom}} </td>
+      </ng-container>
+      <!-- status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let test"> {{test.status}} </td>
+      </ng-container>
 
-  </mat-drawer-content>
+      <ng-container matColumnDef="result">
+        <th mat-header-cell *matHeaderCellDef class="w-200"> Result </th>
+        <td mat-cell *matCellDef="let test">{{test.result}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons *ngIf="this.testList.length > 0"></mat-paginator>
+  </mat-card-content>
 </mat-card>
