@@ -12,6 +12,7 @@ import { TestComponent } from './content/test/test.component';
 import { RecordTestCenterOfficerComponent } from './content/record-test-center-officer/record-test-center-officer.component';
 import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/manage-test-kit-stock.component'
 import { RegisterTestCenterComponent } from "./content/register-test-center/register-test-center.component";
+import { ReportComponent } from "./content/report/report.component";
 
 const routes: Routes = [
   {path: 'resultPage', component: ResultComponent},
@@ -19,7 +20,9 @@ const routes: Routes = [
   {path: 'newTest', component: TestComponent},
   {path: 'tester', component: RecordTestCenterOfficerComponent},
   {path: 'testkit', component: ManageTestKitStockComponent},
-  {path: 'register', component: RegisterTestCenterComponent}
+  {path: 'register', component: RegisterTestCenterComponent},
+  {path: 'report', component: ReportComponent},
+  {path: '',  redirectTo: '/centresPage', pathMatch: 'full' } // default page, should be the dashboard
 ];
 
 @NgModule({
@@ -27,4 +30,12 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ResultComponent, CentresComponent,TestComponent, RecordTestCenterOfficerComponent,ManageTestKitStockComponent,RegisterTestCenterComponent]
+export const routingComponents = [
+  ResultComponent,
+  CentresComponent,
+  TestComponent,
+  RecordTestCenterOfficerComponent,
+  ManageTestKitStockComponent,
+  RegisterTestCenterComponent,
+  ReportComponent
+]
