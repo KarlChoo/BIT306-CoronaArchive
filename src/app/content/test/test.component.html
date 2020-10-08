@@ -1,8 +1,8 @@
 <h2>New Test</h2>
-<mat-tab-group>
+<mat-tab-group class="mat-elevation-z8">
   <!-- New patients -->
   <mat-tab label="New Patient">
-    <mat-card class="mat-elevation-z8">
+    <mat-card>
       <mat-card-header>
         <mat-card-title></mat-card-title>
       </mat-card-header>
@@ -90,10 +90,12 @@
   <mat-card-header>
     <mat-card-title>Manage Test Results</mat-card-title>
   </mat-card-header>
+
   <mat-form-field appearance="outline">
     <input matInput ngModel type="text" name="username" placeholder="Find a Test ID">
   </mat-form-field>
   <button mat-raised-button type="submit"  style="margin-left: 5px; padding: 6px;"><mat-icon>search</mat-icon></button>
+
   <mat-card-content>
   <p *ngIf="this.testList.length == 0" style="text-align: center; margin-top: 10px;">No Test has been conducted yet.</p>
 

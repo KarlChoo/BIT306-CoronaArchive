@@ -6,6 +6,7 @@
   position: fixed;
   background-color: #fff;
   z-index:10!important;
+  border-bottom: 3px solid #0097a7ce;
 }
 
 #logo{

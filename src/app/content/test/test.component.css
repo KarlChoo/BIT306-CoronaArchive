@@ -4,7 +4,7 @@ mat-tab-group{
 }
 
 mat-card{
-  width: 90%;
+  width: 97%;
   opacity: 0.9;
 }
 
@@ -13,7 +13,11 @@ form mat-form-field{
 }
 
 #updateTestTable{
-  width: 90%;
-  height: auto;
+  width: 100%;
+}
+
+th{
+  color: #0097a7ce;
+  font-size: medium;
 }
 
