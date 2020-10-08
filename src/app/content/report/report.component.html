@@ -1,1 +1,35 @@
-<p>report works!</p>
+<mat-grid-list [cols]="breakpoint" [rowHeight]="dimensionRatio" (window:resize)="onResize($event)" id="topCardDisplay">
+  <mat-grid-tile>
+    <mat-card class="mat-elevation-z8">
+      <mat-card-header>
+        <mat-card-title>{{this.reportService.getDailyCase()}}</mat-card-title>
+      </mat-card-header>
+       <mat-card-content>Positive cases today</mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="mat-elevation-z8">
+      <mat-card-header>
+       <mat-card-title>{{this.reportService.getMonthlyPatients()}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>Monthly patients</mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="mat-elevation-z8">
+      <mat-card-header>
+        <mat-card-title>{{this.reportService.getKitCount()}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>Total number of test kits in stock</mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-card class="mat-elevation-z8" style="margin-top:20px">
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+  </mat-card-header>
+  <mat-drawer-content>
+
+  </mat-drawer-content>
+</mat-card>

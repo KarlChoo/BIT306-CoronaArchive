@@ -15,7 +15,8 @@ import { FooterComponent } from './footer/footer.component';
 //import { BranchpanelComponent } from './branchpanel/branchpanel.component';
 import { RecordTestCenterOfficerComponent } from './content/record-test-center-officer/record-test-center-officer.component';
 import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/manage-test-kit-stock.component';
-
+import { LoginComponent } from './login/login.component';
+import { ReportComponent } from './content/report/report.component';
 //Dylan's Components
 import { ResultComponent } from './content/result/result.component';
 import { CentresComponent } from './content/centres/centres.component';
@@ -37,8 +38,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule}  from '@angular/material/checkbox';
-import { LoginComponent } from './login/login.component';
-import { ReportComponent } from './content/report/report.component';
+import { MatListModule } from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -76,6 +76,7 @@ import { ReportComponent } from './content/report/report.component';
     MatTabsModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

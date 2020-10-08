@@ -1,0 +1,22 @@
+#topCardDisplay{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#topCardDisplay mat-card{
+  width: 85%;
+  opacity: 0.9;
+  height: 70%;
+}
+
+#topCardDisplay mat-card mat-card-title{
+  font-family: benderregular,SF Mono,Droid Sans Mono,Ubuntu Mono,Consolas,Courier New,Courier,monospace!important;
+  letter-spacing: .03rem;
+  font-size: 3rem!important;
+  font-weight: 300;
+}
+
+mat-card{
+  width: 95%;
+  opacity: 0.9;
+}
