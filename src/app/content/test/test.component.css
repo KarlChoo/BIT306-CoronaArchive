@@ -14,4 +14,6 @@ form mat-form-field{
 
 #updateTestTable{
   width: 90%;
+  height: auto;
 }
+
