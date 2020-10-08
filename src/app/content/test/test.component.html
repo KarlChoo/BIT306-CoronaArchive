@@ -136,8 +136,11 @@
       <mat-form-field appearance="fill">
         <mat-label>Result</mat-label>
         <mat-select matInput ngModel required name="patientType">
-          <mat-option *ngFor="let result of result" [value]="result.value">
-            {{result.viewValue}}
+          <mat-option value="positive">
+            Positive
+          </mat-option>
+          <mat-option value="negative">
+            Negative
           </mat-option>
         </mat-select>
       </mat-form-field>

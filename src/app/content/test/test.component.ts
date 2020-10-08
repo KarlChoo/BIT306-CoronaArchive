@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { PatientType } from "../../model/patientType.model";
-import { Result } from "../../model/patientType.model";
 import { NgForm } from "@angular/forms";
 import { Test } from "../../model/Test.model";
 import { MatPaginator } from '@angular/material/paginator';
@@ -91,11 +90,6 @@ export class TestComponent implements OnInit, AfterViewInit {
       {value: 'closecontact', viewValue: 'Close Contact'},
       {value: 'infected', viewValue: 'Infected'},
       {value: 'suspected', viewValue: 'Suspected'}
-    ];
-
-    result: Result[] = [
-      {value: true, viewValue: 'Positive'},
-      {value: false, viewValue: 'Negative'}
     ];
 
   ngAfterViewInit() {
