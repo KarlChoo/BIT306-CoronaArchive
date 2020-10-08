@@ -9,13 +9,9 @@ import { Centre } from "../../model/centre.model";
   styleUrls: ['./register-test-center.component.css']
 })
 export class RegisterTestCenterComponent implements OnInit {
-
-  testCenterList: Centre[] = [];
-
   constructor(public testCenterService:TestCenterService) { }
 
   ngOnInit(): void {
-    this.testCenterList = this.testCenterService.getTestCenterList();
   }
 
   registerTestCenter(formData: NgForm){
