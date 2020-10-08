@@ -1,22 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Centres } from "../../model/centres.model";
 
-export interface centres {
-  centreID: string;
-  centreName: string;
-  opTime: string;
-}
-
-const ELEMENT_DATA: centres[] = [
-  {centreID: 'C0001', centreName: 'Puchong', opTime: '0900-1800'},
-  {centreID: 'C0002', centreName: 'Setapak', opTime: '0900-1800'},
-  {centreID: 'C0003', centreName: 'PJ', opTime: '0900-1800'},
-  {centreID: 'C0004', centreName: 'Cyberjaya', opTime: '0900-1800'},
-  {centreID: 'C0005', centreName: 'Subang', opTime: '0900-1800'},
-  {centreID: 'C0006', centreName: 'Damansara', opTime: '0900-1800'},
-  {centreID: 'C0007', centreName: 'Subang Jaya', opTime: '0900-1800'},
-  {centreID: 'C0008', centreName: 'Sunway', opTime: '0900-1800'},
-  {centreID: 'C0009', centreName: 'Giza', opTime: '0900-1800'},
-  {centreID: 'C0010', centreName: 'Bukit Targa', opTime: '0900-1800'},
+const ELEMENT_DATA: Centres[] = [
+  {centreID: 'C0001', centreName: 'Puchong'},
+  {centreID: 'C0002', centreName: 'Setapak'},
+  {centreID: 'C0003', centreName: 'PJ'},
+  {centreID: 'C0004', centreName: 'Cyberjaya'},
+  {centreID: 'C0005', centreName: 'Subang'},
+  {centreID: 'C0006', centreName: 'Damansara'},
+  {centreID: 'C0007', centreName: 'Subang Jaya'},
+  {centreID: 'C0008', centreName: 'Sunway'},
+  {centreID: 'C0009', centreName: 'Giza'},
+  {centreID: 'C0010', centreName: 'Bukit Targa'},
 ];
 
 @Component({
@@ -31,7 +26,7 @@ export class CentresComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  displayedColumns: string[] = ['centreID', 'centreName', 'opTime'];
+  displayedColumns: string[] = ['centreID', 'centreName'];
   centreDataSource = ELEMENT_DATA;
 
 }
