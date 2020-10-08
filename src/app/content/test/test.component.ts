@@ -32,7 +32,6 @@ export class TestComponent implements OnInit, AfterViewInit {
       if (formData.invalid){
         return;
       }
-
       //generate ID
       var theLetter = "T";
       var theLength = this.testList.length + 1;

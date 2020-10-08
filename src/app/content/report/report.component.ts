@@ -21,11 +21,11 @@ export class ReportComponent implements OnInit,AfterViewInit {
   ngOnInit() {
     this.breakpoint = (window.innerWidth <= 1000) ? 1 : 3;
     this.dimensionRatio = (window.innerWidth <= 1000) ? "2:0.5" : "2.5:1";
-    this.testList = this.reportService.getAllTests();
+    this.testList = this.testService.getTestList();
   }
 
   displayedColumns: string[] = ['testID', 'testDate', 'username', 'patientType','symptom','status','result'];
-  dataSource = new MatTableDataSource<Test>(this.reportService.getAllTests());
+  dataSource = new MatTableDataSource<Test>(this.testService.getTestList());
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
