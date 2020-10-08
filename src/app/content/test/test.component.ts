@@ -88,7 +88,7 @@ export class TestComponent implements OnInit, AfterViewInit {
     patientType: PatientType[] = [
       {value: 'returnee', viewValue: 'Returnee'},
       {value: 'quarantined', viewValue: 'Quarantined'},
-      {value: 'close', viewValue: 'Close Contact'},
+      {value: 'closecontact', viewValue: 'Close Contact'},
       {value: 'infected', viewValue: 'Infected'},
       {value: 'suspected', viewValue: 'Suspected'}
     ];
@@ -106,4 +106,10 @@ export class TestComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  displayUpdate(testID){
+    //generate date
+     var todayDate = new Date().toLocaleString();
+    //console.log(testID);
+    alert("Test " + testID  + " update Completed at \n" + todayDate + ".");
+  }
  }
