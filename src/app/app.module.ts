@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, Routes, RouterModule } from "@angular/router";
 
 
 //Own components here
@@ -38,6 +37,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule}  from '@angular/material/checkbox';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -72,7 +72,7 @@ import { MatCheckboxModule}  from '@angular/material/checkbox';
     MatSortModule,
     MatTabsModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

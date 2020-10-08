@@ -5,7 +5,7 @@
       <mat-card-header>
         <mat-card-title>New Test</mat-card-title>
       </mat-card-header>
-      <form>
+      <form #postForm="ngForm" (submit)="recordNewTest(postForm)">
         <mat-card-content>
             <mat-form-field appearance="outline">
               <mat-label>Username</mat-label>
@@ -24,7 +24,7 @@
 
             <mat-form-field appearance="fill">
               <mat-label>Patient Type</mat-label>
-              <mat-select ngModel>
+              <mat-select matInput ngModel name="patientType">
                 <mat-option *ngFor="let patientType of patientType" [value]="patientType.value">
                   {{patientType.viewValue}}
                 </mat-option>
