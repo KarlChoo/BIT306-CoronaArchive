@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>New Test Kit</mat-card-title>
   </mat-card-header>
-  <form #postForm="ngForm" (submit)="recordNewTestKit(postForm)" id="newTestkit">
+  <form #postForm="ngForm" (submit)="recordNewTestKit(postForm)" id="newTestkit" ngNativeValidate>
     <mat-card-content>
       <mat-form-field appearance="outline">
         <mat-label>Kit Name</mat-label>

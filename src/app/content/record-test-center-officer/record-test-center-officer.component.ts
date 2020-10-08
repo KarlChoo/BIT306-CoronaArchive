@@ -4,6 +4,7 @@ import { Officer } from "../../model/officer.model";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { TestCenterOfficerService } from "./test-center-officer.service";
 
 @Component({
   selector: 'app-record-test-center-officer',
@@ -12,22 +13,16 @@ import { MatSort } from '@angular/material/sort';
 })
 export class RecordTestCenterOfficerComponent implements OnInit,AfterViewInit {
 
-  constructor() { }
+  testerList: Officer[] = []
+
+  constructor(public testCenterOfficerService:TestCenterOfficerService) { }
 
   ngOnInit(): void {
+    this.testerList = this.testCenterOfficerService.getTesterList();
   }
 
-  /*
-  officerList: Officer[] = [
-      {username: "kekw",password: "sdddd", name: "dicklan", position: "Tester"},
-      {username: "grovel",password: "12345", name: "dolan", position: "Tester"},
-      {username: "mansex",password: "9999", name: "mongoloid", position: "Tester"},
-  ];
-*/
-  officerList: Officer[] = []
-
   columnName: string[] = ['username', 'password', 'name', 'position','action'];
-  dataSource = new MatTableDataSource<Officer>(this.officerList);
+  dataSource = new MatTableDataSource<Officer>(this.testCenterOfficerService.getTesterList());
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -43,13 +38,13 @@ export class RecordTestCenterOfficerComponent implements OnInit,AfterViewInit {
       return;
     }
 
-    const newOfficer: Officer = {
+    const newTester: Officer = {
         username: formData.value.username,
         password: formData.value.password,
         name: formData.value.name,
         position: "Tester"
     }
-    this.officerList.push(newOfficer);
+    this.testCenterOfficerService.addNewTester(newTester)
     //alert("The new officer has been created");
     formData.resetForm();
     this.refreshTable();

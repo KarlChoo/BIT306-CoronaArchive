@@ -1,4 +1,4 @@
-export interface Centres {
+export interface Centre {
   centreID: string;
   centreName: string;
 }

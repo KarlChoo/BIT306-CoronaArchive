@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { TestCenterService } from "../centres/test-centre.service";
+import { Centre } from "../../model/centre.model";
 
 @Component({
   selector: 'app-register-test-center',
@@ -8,14 +10,25 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterTestCenterComponent implements OnInit {
 
-  constructor() { }
+  testCenterList: Centre[] = [];
+
+  constructor(public testCenterService:TestCenterService) { }
 
   ngOnInit(): void {
+    this.testCenterList = this.testCenterService.getTestCenterList();
   }
 
   registerTestCenter(formData: NgForm){
     if(formData.invalid){
       return;
     }
+
+    const newTestCenter: Centre = {
+       centreID:  this.testCenterService.generateTestCenterID(),
+       centreName: formData.value.centreName,
+    }
+
+    this.testCenterService.addNewTestCenter(newTestCenter);
+    formData.resetForm();
   }
 }

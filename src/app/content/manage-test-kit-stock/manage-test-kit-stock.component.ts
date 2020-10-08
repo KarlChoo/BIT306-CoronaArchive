@@ -4,6 +4,7 @@ import { TestKit } from "../../model/testkit.model";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { TestKitService } from "./testkit.service";
 
 @Component({
   selector: 'app-manage-test-kit-stock',
@@ -12,23 +13,17 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ManageTestKitStockComponent implements OnInit {
 
-  constructor() { }
+  testKitList: TestKit[] = [];
+
+  constructor(public testKitService: TestKitService) { }
+
   ngOnInit(): void {
+    this.testKitList = this.testKitService.getTestKits();
   }
 
-  /*
-  testKitList: TestKit[] = [
-    {kitID: "TK0001", kitName: "Nose testing kit", stock: 456},
-    {kitID: "TK0002", kitName: "Blood testing kit", stock: 114},
-    {kitID: "TK0003", kitName: "Temperature testing kit", stock: 69},
-    {kitID: "TK0004", kitName: "Ear testing kit", stock: 322},
-  ]
-  */
-
-  testKitList: TestKit[] = []
-
   columnName: string[] = ['kitID', 'kitName', 'stock'];
-  dataSource = new MatTableDataSource<TestKit>(this.testKitList);
+  dataSource = new MatTableDataSource<TestKit>(this.testKitService.getTestKits());
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -45,23 +40,13 @@ export class ManageTestKitStockComponent implements OnInit {
     }
 
     const newTestkit: TestKit = {
-      kitID: this.generateKitID(),
+      kitID: this.testKitService.generateKitID(),
       kitName: formData.value.kitname,
       stock: formData.value.stock
     };
-    this.testKitList.push(newTestkit);
+    this.testKitService.addNewTestKits(newTestkit);
     formData.resetForm();
     this.refreshTable();
-  }
-
-  generateKitID(): string{
-    let nextID = this.testKitList.length + 1;
-    let zeroPad = "";
-    if(nextID.toString().length < 4){
-      zeroPad = "0000";
-      zeroPad = zeroPad.slice(0,4 - nextID.toString().length);
-    }
-    return "TK" + zeroPad + nextID;
   }
 
   refreshTable(){

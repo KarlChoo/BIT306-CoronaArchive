@@ -3,11 +3,11 @@
     <mat-card-header>
       <mat-card-title>Register Center Name</mat-card-title>
     </mat-card-header>
-    <form #postForm="ngForm" (submit)="registerTestCenter(postForm)" id="newOfficer">
+    <form #postForm="ngForm" (submit)="registerTestCenter(postForm)" id="newOfficer" ngNativeValidate>
       <mat-card-content>
         <mat-form-field appearance="outline">
           <mat-label>Center name</mat-label>
-          <input matInput ngModel type="text" name="centerName" placeholder="Center name" required>
+          <input matInput ngModel type="text" name="centreName" placeholder="Centre name" required>
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions align="end">

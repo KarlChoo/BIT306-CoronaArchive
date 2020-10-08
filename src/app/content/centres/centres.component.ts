@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Centres } from "../../model/centres.model";
+import { Centre } from "../../model/centre.model";
+import { TestCenterService } from "./test-centre.service";
 
-const ELEMENT_DATA: Centres[] = [
+const ELEMENT_DATA: Centre[] = [
   {centreID: 'C0001', centreName: 'Puchong'},
   {centreID: 'C0002', centreName: 'Setapak'},
   {centreID: 'C0003', centreName: 'PJ'},
@@ -21,12 +22,12 @@ const ELEMENT_DATA: Centres[] = [
 })
 export class CentresComponent implements OnInit {
 
-  constructor() { }
+  constructor(public testCenterService:TestCenterService) { }
 
   ngOnInit(): void {
   }
 
   displayedColumns: string[] = ['centreID', 'centreName'];
-  centreDataSource = ELEMENT_DATA;
-
+  //centreDataSource = ELEMENT_DATA;
+  centreDataSource = this.testCenterService.getTestCenterList();
 }

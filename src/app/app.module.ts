@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, Routes, RouterModule } from "@angular/router";
-
 
 //Own components here
 import { AppRoutingModule, routingComponents } from './app-routing.module';
@@ -38,6 +36,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule}  from '@angular/material/checkbox';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +50,8 @@ import { MatCheckboxModule}  from '@angular/material/checkbox';
     ResultComponent,
     CentresComponent,
     TestComponent,
-    ManageTestKitStockComponent //routing
+    ManageTestKitStockComponent,
+    LoginComponent //routing
   ],
   imports: [
     BrowserModule,
