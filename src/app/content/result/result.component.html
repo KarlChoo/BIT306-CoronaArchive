@@ -37,12 +37,24 @@
   <!-- result Column -->
   <ng-container matColumnDef="result">
     <th mat-header-cell *matHeaderCellDef> Result </th>
-    <td mat-cell *matCellDef="let test"> {{test.result}} </td>
+    <td mat-cell *matCellDef="let test">
+      <p *ngIf="test.status == 'Completed'; else notAvail">
+        {{test.result}}
+      </p>
+      <ng-template #notAvail>
+        <p #notAvail>N/A</p>
+      </ng-template></td>
   </ng-container>
   <!-- result date Column -->
   <ng-container matColumnDef="resultDate">
     <th mat-header-cell *matHeaderCellDef> Result Date </th>
-    <td mat-cell *matCellDef="let test"> {{test.resultDate}} </td>
+    <td mat-cell *matCellDef="let test">
+      <p *ngIf="test.status == 'Completed'; else notAvail">
+        {{test.resultDate}}
+      </p>
+      <ng-template #notAvail>
+        <p #notAvail>N/A</p>
+      </ng-template></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

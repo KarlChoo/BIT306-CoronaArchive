@@ -5,4 +5,6 @@ export interface Test {
   patientType: string;
   symptom: string;
   status: string;
+  result?: string;
+  resultDate?: string;
 }
