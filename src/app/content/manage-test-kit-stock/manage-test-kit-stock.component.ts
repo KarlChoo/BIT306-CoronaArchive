@@ -11,14 +11,10 @@ import { TestKitService } from "./testkit.service";
   templateUrl: './manage-test-kit-stock.component.html',
   styleUrls: ['./manage-test-kit-stock.component.css']
 })
-export class ManageTestKitStockComponent implements OnInit {
-
-  testKitList: TestKit[] = [];
-
+export class ManageTestKitStockComponent implements OnInit,AfterViewInit{
   constructor(public testKitService: TestKitService) { }
 
   ngOnInit(): void {
-    this.testKitList = this.testKitService.getTestKits();
   }
 
   columnName: string[] = ['kitID', 'kitName', 'stock'];

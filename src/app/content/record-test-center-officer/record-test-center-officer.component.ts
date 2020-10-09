@@ -12,13 +12,9 @@ import { TestCenterOfficerService } from "./test-center-officer.service";
   styleUrls: ['./record-test-center-officer.component.css']
 })
 export class RecordTestCenterOfficerComponent implements OnInit,AfterViewInit {
-
-  testerList: Officer[] = []
-
   constructor(public testCenterOfficerService:TestCenterOfficerService) { }
 
   ngOnInit(): void {
-    this.testerList = this.testCenterOfficerService.getTesterList();
   }
 
   columnName: string[] = ['username', 'password', 'name', 'position','action'];

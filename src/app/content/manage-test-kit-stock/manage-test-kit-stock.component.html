@@ -6,7 +6,7 @@
     <mat-card-content>
       <mat-form-field appearance="outline">
         <mat-label>Kit Name</mat-label>
-        <input matInput ngModel #kitName="ngModel" type="text" name="kitname" placeholder="Kit ID" required>
+        <input matInput ngModel #kitName="ngModel" type="text" name="kitname" placeholder="Kit Name" required>
         <mat-error *ngIf="kitName.invalid">Please enter a name</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -27,8 +27,8 @@
     <mat-card-title>Test Kit List</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p *ngIf="this.testKitList.length == 0" style="text-align: center;">There is no test kit added yet!</p>
-    <table mat-table matSort [dataSource]="dataSource" id="testerTable" *ngIf="this.testKitList.length > 0">
+    <p *ngIf="this.dataSource.filteredData.length == 0" style="text-align: center;">There is no test kit added yet!</p>
+    <table mat-table matSort [dataSource]="dataSource" id="testerTable" *ngIf="this.dataSource.filteredData.length > 0">
       <!-- Kit ID Column -->
       <ng-container matColumnDef="kitID">
         <th mat-header-cell *matHeaderCellDef> Kit ID </th>
@@ -54,7 +54,7 @@
       <tr mat-header-row *matHeaderRowDef="columnName"></tr>
       <tr mat-row *matRowDef="let row; columns: columnName;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons *ngIf="this.testKitList.length > 0"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </mat-card-content>
   <mat-card-actions align="end">
     <button mat-raised-button	color="warn" type="submit">Save Changes</button>

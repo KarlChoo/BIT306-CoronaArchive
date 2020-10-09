@@ -36,8 +36,8 @@
     <mat-card-title>Tester</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p *ngIf="this.testerList.length == 0" style="text-align: center;">There is no tester added yet!</p>
-    <table mat-table matSort [dataSource]="dataSource" id="testerTable" *ngIf="this.testerList.length > 0">
+    <p *ngIf="this.dataSource.filteredData.length == 0" style="text-align: center;">There is no tester added yet!</p>
+    <table mat-table matSort [dataSource]="dataSource" id="testerTable" *ngIf="this.dataSource.filteredData.length > 0">
       <!-- Username Column -->
       <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
