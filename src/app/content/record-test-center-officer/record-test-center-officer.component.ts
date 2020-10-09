@@ -32,7 +32,7 @@ export class RecordTestCenterOfficerComponent implements OnInit,AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  recordNewOfficer(formData: NgForm){
+  recordNewTester(formData: NgForm){
 
     if(formData.invalid){
       return;
@@ -47,6 +47,11 @@ export class RecordTestCenterOfficerComponent implements OnInit,AfterViewInit {
     this.testCenterOfficerService.addNewTester(newTester)
     //alert("The new officer has been created");
     formData.resetForm();
+    this.refreshTable();
+  }
+
+  removeTester(tester: Officer){
+    this.testCenterOfficerService.removeTester(tester);
     this.refreshTable();
   }
 

@@ -21,4 +21,9 @@ export class TestCenterOfficerService {
   addNewTester(newTester: Officer){
     this.testerList.push(newTester)
   }
+
+  removeTester(tester: Officer){
+    let index = this.testerList.indexOf(tester);
+    if(index > -1) this.testerList.splice(index,1);
+  }
 }

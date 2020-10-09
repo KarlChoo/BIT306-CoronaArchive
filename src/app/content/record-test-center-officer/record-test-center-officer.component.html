@@ -1,9 +1,9 @@
-<!--Registration form for new officer-->
+<!--Registration form for new tester-->
 <mat-card class="mat-elevation-z8">
   <mat-card-header>
-    <mat-card-title>New Test Center Officer</mat-card-title>
+    <mat-card-title>New Test Center Tester</mat-card-title>
   </mat-card-header>
-  <form #postForm="ngForm" (submit)="recordNewOfficer(postForm)" id="newOfficer" ngNativeValidate>
+  <form #postForm="ngForm" (submit)="recordNewTester(postForm)" ngNativeValidate>
     <mat-card-content>
         <mat-form-field appearance="outline">
           <mat-label>Username</mat-label>
@@ -30,45 +30,46 @@
 
 <mat-divider class="content-divider"></mat-divider>
 
-<!--All officer's in table-->
+<!--All tester's in table-->
 <mat-card class="mat-elevation-z8">
   <mat-card-header>
-    <mat-card-title>Test Center Officer</mat-card-title>
+    <mat-card-title>Tester</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p *ngIf="this.testerList.length == 0" style="text-align: center;">There is no officer added yet!</p>
+    <p *ngIf="this.testerList.length == 0" style="text-align: center;">There is no tester added yet!</p>
     <table mat-table matSort [dataSource]="dataSource" id="testerTable" *ngIf="this.testerList.length > 0">
       <!-- Username Column -->
       <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
-        <td mat-cell *matCellDef="let officer"> {{officer.username}} </td>
+        <td mat-cell *matCellDef="let tester"> {{tester.username}} </td>
       </ng-container>
 
       <!-- Password Column -->
       <ng-container matColumnDef="password">
         <th mat-header-cell *matHeaderCellDef> Password </th>
-        <td mat-cell *matCellDef="let officer"> {{officer.password}} </td>
+        <td mat-cell *matCellDef="let tester"> {{tester.password}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let officer"> {{officer.name}} </td>
+        <td mat-cell *matCellDef="let tester"> {{tester.name}} </td>
       </ng-container>
 
       <!--Position Column -->
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> Position </th>
-        <td mat-cell *matCellDef="let officer"> {{officer.position}} </td>
+        <td mat-cell *matCellDef="let tester"> {{tester.position}} </td>
       </ng-container>
 
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef class="w-200"> Action </th>
-        <td mat-cell *matCellDef="let officer">
+        <td mat-cell *matCellDef="let tester">
           <button mat-raised-button class="edit-btn">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-raised-button color="warn" class="action-btn">
+          <button mat-raised-button color="warn" class="action-btn"
+            (click)="this.removeTester(this.tester)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
@@ -77,6 +78,6 @@
       <tr mat-header-row *matHeaderRowDef="columnName"></tr>
       <tr mat-row *matRowDef="let row; columns: columnName;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons *ngIf="this.testerList.length > 0"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
   </mat-card-content>
 </mat-card>
