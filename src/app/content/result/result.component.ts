@@ -1,33 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { PatientResult } from "../../model/result.model";
-
-const ELEMENT_DATA: PatientResult[] = [
-  {testNo: 1, testID: 'T1', centreName: 'Puchong',  testDate: '01/01/2020', status: 'completed', result: 'negative'},
-  {testNo: 2, testID: 'T2', centreName: 'Setapak',  testDate: '01/01/2020', status: 'completed', result: 'negative'},
-  {testNo: 3, testID: 'T3', centreName: 'Setapak',  testDate: '01/01/2020', status: 'completed', result: 'negative'},
-  {testNo: 4, testID: 'T4', centreName: 'Puchong',  testDate: '01/01/2020', status: 'completed', result: 'negative'},
-  {testNo: 5, testID: 'T5', centreName: 'Setapak',  testDate: '01/01/2020', status: 'completed', result: 'negative'},
-  {testNo: 6, testID: 'T6', centreName: 'SS2',  testDate: '01/01/2020', status: 'completed', result: 'negative'},
-  {testNo: 7, testID: 'T7', centreName: 'Setapak',  testDate: '01/01/2020', status: 'completed', result: 'negative'},
-  {testNo: 8, testID: 'T8', centreName: 'Puchong',  testDate: '01/01/2020', status: 'completed', result: 'negative'},
-  {testNo: 9, testID: 'T9', centreName: 'SS2',  testDate: '01/01/2020', status: 'completed', result: 'negative'},
-  {testNo: 10, testID: 'T10', centreName: 'SS2',  testDate: '01/01/2020', status: 'pending', result: 'N/A'},
-];
+import { Test } from "../../model/Test.model";
+import { TestsService } from "../test/tests.service";
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
-export class ResultComponent implements OnInit {
 
-  constructor() { }
+export class ResultComponent implements OnInit {
+  //tests for patient array
+  thePatientList: Test[] = [];
+  constructor(public testService:TestsService) { }
 
   ngOnInit(): void {
+    this.thePatientList = this.testService.getTestList();
   }
 
-  displayedColumns: string[] = ['testNo', 'testID', 'centreName', 'testDate','status', 'result'];
-  resultDataSource = ELEMENT_DATA;
+  //bind with table
+  displayedColumns: string[] = ['testID', 'testDate', 'username', 'patientType','symptom','status','result','resultDate'];
+  dataSource = new MatTableDataSource<Test>(this.testService.getTestList());
 
 }
