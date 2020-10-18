@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TestCenterService } from "./test-centre.service";
 
 @Component({
@@ -6,11 +6,15 @@ import { TestCenterService } from "./test-centre.service";
   templateUrl: './centres.component.html',
   styleUrls: ['./centres.component.css']
 })
-export class CentresComponent implements OnInit {
+export class CentresComponent implements OnInit, OnDestroy {
 
   constructor(public testCenterService:TestCenterService) { }
 
   ngOnInit(): void {
+    this.testCenterService.getTestCenterList();
+  }
+
+  ngOnDestroy(): void {
   }
 
   displayedColumns: string[] = ['centreID', 'centreName'];

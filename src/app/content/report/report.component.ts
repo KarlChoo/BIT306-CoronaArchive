@@ -37,8 +37,4 @@ export class ReportComponent implements OnInit,AfterViewInit {
     this.breakpoint = (event.target.innerWidth <= 1000) ? 1 : 3;
     this.dimensionRatio = (window.innerWidth <= 1000) ? "2:0.5" : "3:1";
   }
-
-
-
-
 }
