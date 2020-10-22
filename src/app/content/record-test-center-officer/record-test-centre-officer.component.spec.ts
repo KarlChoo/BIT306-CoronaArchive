@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecordTestCenterOfficerComponent } from './record-test-center-officer.component';
+import { RecordTestCentreOfficerComponent } from './record-test-centre-officer.component';
 
 describe('RecordTestCenterOfficerComponent', () => {
-  let component: RecordTestCenterOfficerComponent;
-  let fixture: ComponentFixture<RecordTestCenterOfficerComponent>;
+  let component: RecordTestCentreOfficerComponent;
+  let fixture: ComponentFixture<RecordTestCentreOfficerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecordTestCenterOfficerComponent ]
+      declarations: [ RecordTestCentreOfficerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RecordTestCenterOfficerComponent);
+    fixture = TestBed.createComponent(RecordTestCentreOfficerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

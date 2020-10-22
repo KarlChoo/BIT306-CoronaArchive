@@ -4,7 +4,7 @@ import { Officer } from "../../model/officer.model";
 @Injectable({
   providedIn: 'root'
 })
-export class TestCenterOfficerService {
+export class TestCentreOfficerService {
 
   constructor() { }
 

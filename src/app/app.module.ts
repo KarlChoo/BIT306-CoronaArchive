@@ -9,11 +9,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
-import { RegisterTestCenterComponent } from './content/register-test-center/register-test-center.component';
+import { RegisterTestCentreComponent } from './content/register-test-center/register-test-centre.component';
 import { DashboardComponent } from './content//dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
 //import { BranchpanelComponent } from './branchpanel/branchpanel.component';
-import { RecordTestCenterOfficerComponent } from './content/record-test-center-officer/record-test-center-officer.component';
+import { RecordTestCentreOfficerComponent } from './content/record-test-center-officer/record-test-centre-officer.component';
 import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/manage-test-kit-stock.component';
 import { LoginComponent } from './login/login.component';
 import { ReportComponent } from './content/report/report.component';
@@ -45,10 +45,10 @@ import { MatListModule } from "@angular/material/list";
     AppComponent,
     HeaderComponent,
     MainComponent,
-    RegisterTestCenterComponent,
+    RegisterTestCentreComponent,
     DashboardComponent,
     FooterComponent,
-    RecordTestCenterOfficerComponent,
+    RecordTestCentreOfficerComponent,
     ResultComponent,
     CentresComponent,
     TestComponent,

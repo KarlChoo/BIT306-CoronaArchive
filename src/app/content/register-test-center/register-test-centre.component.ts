@@ -4,11 +4,11 @@ import { TestCenterService } from "../centres/test-centre.service";
 import { Centre } from "../../model/centre.model";
 
 @Component({
-  selector: 'app-register-test-center',
-  templateUrl: './register-test-center.component.html',
-  styleUrls: ['./register-test-center.component.css']
+  selector: 'app-register-test-centre',
+  templateUrl: './register-test-centre.component.html',
+  styleUrls: ['./register-test-centre.component.css']
 })
-export class RegisterTestCenterComponent implements OnInit {
+export class RegisterTestCentreComponent implements OnInit {
   constructor(public testCenterService:TestCenterService) { }
 
   ngOnInit(): void {

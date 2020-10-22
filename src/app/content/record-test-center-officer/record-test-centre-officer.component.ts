@@ -4,15 +4,15 @@ import { Officer } from "../../model/officer.model";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { TestCenterOfficerService } from "./test-center-officer.service";
+import { TestCentreOfficerService } from "./test-centre-officer.service";
 
 @Component({
-  selector: 'app-record-test-center-officer',
-  templateUrl: './record-test-center-officer.component.html',
-  styleUrls: ['./record-test-center-officer.component.css']
+  selector: 'app-record-test-centre-officer',
+  templateUrl: './record-test-centre-officer.component.html',
+  styleUrls: ['./record-test-centre-officer.component.css']
 })
-export class RecordTestCenterOfficerComponent implements OnInit,AfterViewInit {
-  constructor(public testCenterOfficerService:TestCenterOfficerService) { }
+export class RecordTestCentreOfficerComponent implements OnInit,AfterViewInit {
+  constructor(public testCenterOfficerService:TestCentreOfficerService) { }
 
   ngOnInit(): void {
   }
