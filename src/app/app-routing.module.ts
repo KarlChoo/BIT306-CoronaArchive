@@ -13,6 +13,7 @@ import { RecordTestCentreOfficerComponent } from './content/record-test-center-o
 import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/manage-test-kit-stock.component'
 import { RegisterTestCentreComponent } from "./content/register-test-center/register-test-centre.component";
 import { ReportComponent } from "./content/report/report.component";
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   {path: 'resultPage', component: ResultComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'testkit', component: ManageTestKitStockComponent},
   {path: 'register', component: RegisterTestCentreComponent},
   {path: 'report', component: ReportComponent},
-  {path: '',  redirectTo: '/centresPage', pathMatch: 'full' } // default page, should be the dashboard
+  {path: 'login', component: LoginComponent},
+  {path: '',  redirectTo: '/login', pathMatch: 'full' } // default page, should be the dashboard
 ];
 
 @NgModule({

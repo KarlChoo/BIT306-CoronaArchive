@@ -19,12 +19,7 @@ export class RegisterTestCentreComponent implements OnInit {
       return;
     }
 
-    const newTestCenter: Centre = {
-       centreID:  this.testCenterService.generateTestCenterID(),
-       centreName: formData.value.centreName,
-    }
-
-    this.testCenterService.addNewTestCenter(newTestCenter);
+    this.testCenterService.addNewTestCenter(formData.value.centreName);
     formData.resetForm();
   }
 }

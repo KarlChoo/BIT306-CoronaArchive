@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Output() sidenavEvent = new EventEmitter();
+  @Output() logoutEvent = new EventEmitter();
 
   constructor() { }
 
@@ -16,5 +17,9 @@ export class HeaderComponent implements OnInit {
 
   clickSidenav(){
     this.sidenavEvent.emit();
+  }
+
+  clickLogout(){
+    this.logoutEvent.emit();
   }
 }

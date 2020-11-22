@@ -15,7 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 //import { BranchpanelComponent } from './branchpanel/branchpanel.component';
 import { RecordTestCentreOfficerComponent } from './content/record-test-center-officer/record-test-centre-officer.component';
 import { ManageTestKitStockComponent } from './content/manage-test-kit-stock/manage-test-kit-stock.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { ReportComponent } from './content/report/report.component';
 //Dylan's Components
 import { ResultComponent } from './content/result/result.component';

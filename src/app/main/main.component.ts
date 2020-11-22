@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
+import { MainService } from "./main.service";
 
 @Component({
   selector: 'app-main',
@@ -7,36 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  isOpened: boolean = true;
-
-  constructor() { }
+  isOpened: boolean = false;
+  token: string;
+  user: any;
+  private authListenerSubs: Subscription;
+  constructor(public mainService: MainService, public authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
-    this.sideNavButtonAddEvent()
+    this.authListenerSubs = this.authService.getAuthStatusListener()
+    .subscribe(subData =>{
+        this.token = subData.token;
+        this.user = subData.user;
+    })
   }
 
   toggleSidenav(){
     this.isOpened = !this.isOpened;
   }
 
-  sideNavButtonAddEvent(){
-    let sidenavButtons = document.querySelector("#sidenav").querySelectorAll("button");
-    sidenavButtons.forEach(button => {
-        button.addEventListener("click", () =>{
-            this.setButtonActive(button);
-        })
-    });
-  }
-
-  removeAllButtonActive(){
-    let sidenavButtons = document.querySelector("#sidenav").querySelectorAll("button");
-    sidenavButtons.forEach(button => {
-      button.classList.remove("active");
-    })
-  }
-
-  setButtonActive(btn){
-    this.removeAllButtonActive();
-    btn.classList.add("active");
+  logout(){
+    this.token = "";
+    alert("Logout successful");
+    this.router.navigate(["/"]);
   }
 }

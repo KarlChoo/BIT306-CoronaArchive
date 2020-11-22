@@ -1,26 +1,38 @@
-<app-header (sidenavEvent)="toggleSidenav()"></app-header>
-<mat-sidenav-container class="app-container">
+<app-login *ngIf="!token"></app-login>
+<div *ngIf="token">
+<app-header (sidenavEvent)="toggleSidenav()" (logoutEvent)="logout()"></app-header>
+<mat-sidenav-container class="app-container" >
   <mat-sidenav #sidenav id="sidenav" mode="side" [opened]="isOpened">
     <div id="profileInfo">
       <h1>Karl Choo</h1>
       <h3>Manager</h3>
     </div>
     <mat-divider></mat-divider>
-    <button mat-raised-button routerLink="/resultPage">Result</button>
-    <button mat-raised-button routerLink="/centresPage">Centres</button>
-    <button mat-raised-button routerLink="/newTest">Manage Test and Results</button>
-    <button mat-raised-button routerLink="/report">Report</button>
-    <button mat-raised-button routerLink="/tester">Register Tester</button>
-    <button mat-raised-button routerLink="/testkit">Test Kits</button>
-    <button mat-raised-button routerLink="/register">Register Centre</button>
-    <button mat-raised-button>Logout</button>
-  </mat-sidenav>
 
+    <!--Admin-->
+    <button mat-raised-button routerLinkActive="active" routerLink="/centresPage" >Centres</button>
+
+    <!-- Manager menu-->
+    <button mat-raised-button routerLinkActive="active" routerLink="/centresPage" >Centres</button>
+    <button mat-raised-button routerLinkActive="active" routerLink="/register" >Register Centre</button>
+    <button mat-raised-button routerLinkActive="active" routerLink="/tester" >Register Tester</button>
+    <button mat-raised-button routerLinkActive="active" routerLink="/testkit" >Test Kits</button>
+    <button mat-raised-button routerLinkActive="active" routerLink="/report" >Report</button>
+
+    <!--Tester menu-->
+    <button mat-raised-button routerLinkActive="active" routerLink="/resultPage">Result</button>
+    <button mat-raised-button routerLinkActive="active" routerLink="/newTest" >Manage Test and Results</button>
+    <button mat-raised-button routerLinkActive="active" routerLink="/report" >Report</button>
+
+    <!--Patient menu-->
+    <button mat-raised-button routerLinkActive="active" routerLink="/resultPage">Result</button>
+
+  </mat-sidenav>
   <mat-sidenav-content>
-    <!--app-header (sidenavEvent)="toggleSidenav()"></app-header> -->
     <div class="content-container">
       <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
+</div>

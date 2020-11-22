@@ -3,6 +3,7 @@ import { Centre } from "../../model/centre.model";
 
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -28,19 +29,33 @@ export class TestCenterService {
 
   constructor(private http: HttpClient) { }
 
-  getTestCenterList(){
+  getTestCentreList(){
       //return this.testCenterList;
-      this.http.get<{centreID: string, testCenterList: Centre[]}>("http://localhost:3000/api/testcentre")
-        .subscribe((centerData) => {
-          this.testCentreList = centerData.testCenterList;
+      this.http.get<{message: string, testCentres: any}>("http://localhost:3000/api/testcentre")
+        .pipe(map(centreData => {
+          return centreData.testCentres.map(testCentre => {
+            return {
+              centreID: testCentre._id,
+              centreName: testCentre.centreName,
+            }
+          })
+        }))
+
+        .subscribe((updatedCentreData) => {
+          this.testCentreList = updatedCentreData;
           this.testCentreListUpdated.next([...this.testCentreList]);
-        })
+       })
+  }
+
+  getTestCentreListLocal(){
+      return this.testCentreList;
   }
 
   getCentreUpdatedListener(){
     return this.testCentreListUpdated.asObservable();
   }
 
+  /*
   generateTestCenterID(){
     let nextID = this.testCentreList.length + 1;
     let zeroPad = "";
@@ -49,12 +64,24 @@ export class TestCenterService {
       zeroPad = zeroPad.slice(0,4 - nextID.toString().length);
     }
     return "C" + zeroPad + nextID;
-  }
+  }*/
 
-  addNewTestCenter(newTestCenter: Centre){
+  addNewTestCenter(centreName: string){
       //this.testCentreList.push(newTestCenter);
-      const testCentre: Centre = {centreID: null,centreName: newTestCenter.centreName};
-      this.testCentreList.push(newTestCenter);
-      this.testCentreListUpdated.next([...this.testCentreList]);
+      //const testCentre: Centre = {centreID: null,centreName: newTestCenter.centreName};
+      //this.testCentreList.push(newTestCenter);
+      //this.testCentreListUpdated.next([...this.testCentreList]);
+      const newTestCentre: Centre = {
+        centreID:  null,
+        centreName: centreName,
+      }
+
+      console.log(newTestCentre);
+
+
+      this.http.post("http://localhost:3000/api/testcentre",newTestCentre)
+        .subscribe(responseData => {
+            console.log(responseData);
+      })
   }
 }
