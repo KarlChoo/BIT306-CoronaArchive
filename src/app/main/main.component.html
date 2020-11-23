@@ -13,12 +13,13 @@
     <button mat-raised-button routerLinkActive="active" routerLink="/centresPage" >Centres</button>
 
     <!-- Manager menu-->
-    <button mat-raised-button routerLinkActive="active" routerLink="/centresPage" >Centres</button>
-    <button mat-raised-button routerLinkActive="active" routerLink="/register" >Register Centre</button>
-    <button mat-raised-button routerLinkActive="active" routerLink="/tester" >Register Tester</button>
-    <button mat-raised-button routerLinkActive="active" routerLink="/testkit" >Test Kits</button>
-    <button mat-raised-button routerLinkActive="active" routerLink="/report" >Report</button>
-
+    <span *ngIf="user.position === ''">
+      <button mat-raised-button routerLinkActive="active" routerLink="/centresPage" >Centres</button>
+      <button mat-raised-button routerLinkActive="active" routerLink="/register" >Register Centre</button>
+      <button mat-raised-button routerLinkActive="active" routerLink="/tester" >Register Tester</button>
+      <button mat-raised-button routerLinkActive="active" routerLink="/testkit" >Test Kits</button>
+      <button mat-raised-button routerLinkActive="active" routerLink="/report" >Report</button>
+    </span>
     <!--Tester menu-->
     <button mat-raised-button routerLinkActive="active" routerLink="/resultPage">Result</button>
     <button mat-raised-button routerLinkActive="active" routerLink="/newTest" >Manage Test and Results</button>
