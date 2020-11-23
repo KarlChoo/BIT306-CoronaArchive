@@ -79,6 +79,7 @@ app.post("/api/testcentre", (req, res, next)=>{
 })
 
 //Officer related API
+/*
 app.get('/api/login', (req, res, next) =>{
   Officer.find().then((document) =>{
     res.status(200).json({
@@ -87,5 +88,6 @@ app.get('/api/login', (req, res, next) =>{
     });
   })
 });
+*/
 
 module.exports = app;
