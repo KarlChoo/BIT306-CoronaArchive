@@ -23,7 +23,6 @@
     </span>
     <!--Tester menu-->
     <span *ngIf="this.authService.getUserType() === 'tester'">
-      <button mat-raised-button routerLinkActive="active" routerLink="/resultPage">Result</button>
       <button mat-raised-button routerLinkActive="active" routerLink="/newTest" >Manage Test and Results</button>
       <button mat-raised-button routerLinkActive="active" routerLink="/report" >Report</button>
     </span>
