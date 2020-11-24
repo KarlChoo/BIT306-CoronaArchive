@@ -6,7 +6,7 @@
       <mat-card-header>
         <mat-card-title></mat-card-title>
       </mat-card-header>
-      <form #postForm="ngForm" (submit)="recordNewTest(postForm)">
+      <form #postForm="ngForm" (submit)="recordNewTest(postForm)"><!-- New patients -->
         <mat-card-content>
             <mat-form-field appearance="outline">
               <mat-label>Username</mat-label>
@@ -55,13 +55,14 @@
       <mat-card-header>
         <mat-card-title></mat-card-title>
       </mat-card-header>
-      <form #postForm2="ngForm" (submit)="recordExistForm(postForm2)">
+      <form #postForm2="ngForm" (submit)="recordExistForm(postForm2)"><!-- Existing patients -->
         <mat-card-content>
           <mat-form-field appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput ngModel type="text" name="username" placeholder="Username" required #username="ngModel">
+            <mat-label>Find Username</mat-label>
+            <input matInput ngModel type="text" name="username" placeholder="" required #username="ngModel">
             <mat-error *ngIf="username.invalid">Please enter a username.</mat-error>
           </mat-form-field>
+          <h3>Full Name: </h3>
 
             <mat-form-field appearance="fill">
               <mat-label>Patient Type</mat-label>

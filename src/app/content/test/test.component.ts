@@ -2,9 +2,11 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { PatientType } from "../../model/patientType.model";
 import { NgForm } from "@angular/forms";
 import { Test } from "../../model/Test.model";
+import { User } from "../../model/user.model";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TestsService } from "./tests.service";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-test',
@@ -13,12 +15,21 @@ import { TestsService } from "./tests.service";
 })
 export class TestComponent implements OnInit, AfterViewInit {
 
-  //tests array
+  // arrays
   testList: Test[] = [];
+  patientList: User[] = [];
+  //subs
+  private patientsSub: Subscription;
 
-  constructor(public testService:TestsService) { }
+  constructor(public testService:TestsService) {}
+
   ngOnInit(): void {
     this.testList = this.testService.getTestList();
+    this.testService.getPatients(); //call the service to get all patients
+    this.patientsSub = this.testService.getPatientUpdatedListener()
+      .subscribe((patients: User[]) => {
+        this.patientList = patients;
+      });
   }
 
   //bind with table
@@ -28,50 +39,51 @@ export class TestComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   //method
+  //creating new test for new patient
+  //register new patient as well
   recordNewTest(formData: NgForm){
       if (formData.invalid){
         return;
       }
-      //generate ID
-      var theLetter = "T";
-      var theLength = this.testList.length + 1;
-      var conv = theLength.toString();
-      var theID = theLetter.concat(conv);
-
       //generate date
       var todayDate = new Date().toLocaleString();
-
+      //generate ID
+      var newID = this.testService.generateTestID();
+      //create new test
       const newTest: Test = {
-        testID: theID,
+        testID: newID,
         testDate: todayDate,
         username: formData.value.username,
         patientType: formData.value.patientType,
         symptom: formData.value.symptom,
         status: "Pending"
       }
+
+      //add the test
       this.testService.addNewTest(newTest);
-      console.log(this.testList);
+      //register the user
+      this.testService.addNewPatient(formData.value.username,formData.value.password, formData.value.fullname, formData.value.patientType, formData.value.symptom);
+
+      //extra
+      //console.log(this.testList);
       formData.resetForm();
       this.refreshTable();
-      alert("Test ID:" + theID + " Successfully Added.");
+      alert("Test ID:" + newID + " Successfully Added.");
+      //alert("Username: " + formData.value.fullname + " Registered Successfully.");
+      //console.log(newPatient.symptoms);
   }
 
+  //creating new rest for existing patient
   recordExistForm(formData: NgForm){
     if (formData.invalid){
       return;
     }
-
-    //generate ID
-    var theLetter = "T";
-    var theLength = this.testList.length + 1;
-    var conv = theLength.toString();
-    var theID = theLetter.concat(conv);
-
     //generate date
     var todayDate = new Date().toLocaleString();
-
+    //generate ID
+    var newID = this.testService.generateTestID();
     const newTest: Test = {
-      testID: theID,
+      testID: newID,
       testDate: todayDate,
       username: formData.value.username,
       patientType: formData.value.patientType,
@@ -82,7 +94,7 @@ export class TestComponent implements OnInit, AfterViewInit {
     console.log(this.testList);
     formData.resetForm();
     this.refreshTable();
-    alert("Test ID:" + theID + " Successfully Added.");
+    alert("Test ID:" + newID + " Successfully Added.");
   }
     //drop down lists
     patientType: PatientType[] = [
@@ -107,4 +119,5 @@ export class TestComponent implements OnInit, AfterViewInit {
     //console.log(testID);
     alert("Test " + testID  + " update Completed at \n" + todayDate + ".");
   }
+
  }
