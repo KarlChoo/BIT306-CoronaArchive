@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 //Own components here
 import { AppRoutingModule, routingComponents } from './app-routing.module';
@@ -39,6 +39,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule}  from '@angular/material/checkbox';
 import { MatListModule } from "@angular/material/list";
+
+//Auth
+import { AuthInterceptor } from "./auth/auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -79,7 +82,7 @@ import { MatListModule } from "@angular/material/list";
     MatCheckboxModule,
     MatListModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

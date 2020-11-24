@@ -7,7 +7,7 @@
       <mat-card-content>
         <mat-form-field appearance="outline">
           <mat-label>Center name</mat-label>
-          <input matInput ngModel #centreName="ngModel" type="text" name="centreName" placeholder="Centre name" required>
+          <input matInput ngModel #centreName="ngModel" type="text" name="centreName" placeholder="Centre name" [value]="this.newCentre.centreName" [disabled]="this.newCentre" required>
           <mat-error *ngIf="centreName.invalid">Enter a name</mat-error>
         </mat-form-field>
       </mat-card-content>

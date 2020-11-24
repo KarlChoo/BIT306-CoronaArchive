@@ -3,4 +3,5 @@ export interface Officer {
     password: string;
     name: string;
     position: string;
+    centreId?: string;
 }

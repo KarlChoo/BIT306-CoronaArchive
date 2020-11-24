@@ -4,6 +4,7 @@ import { Centre } from "../../model/centre.model";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,9 @@ export class TestCenterService {
   */
   private testCentreList: Centre[] = [];
   private testCentreListUpdated = new Subject<Centre[]>();
+  private newCenterUpdated = new Subject();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getTestCentreList(){
       //return this.testCenterList;
@@ -55,6 +57,10 @@ export class TestCenterService {
     return this.testCentreListUpdated.asObservable();
   }
 
+  getNewCentreListener(){
+    return this.newCenterUpdated.asObservable()
+  }
+
   /*
   generateTestCenterID(){
     let nextID = this.testCentreList.length + 1;
@@ -66,7 +72,7 @@ export class TestCenterService {
     return "C" + zeroPad + nextID;
   }*/
 
-  addNewTestCenter(centreName: string){
+  addNewTestCenter(centreName: string, currentUser: any){
       //this.testCentreList.push(newTestCenter);
       //const testCentre: Centre = {centreID: null,centreName: newTestCenter.centreName};
       //this.testCentreList.push(newTestCenter);
@@ -74,14 +80,23 @@ export class TestCenterService {
       const newTestCentre: Centre = {
         centreID:  null,
         centreName: centreName,
+        centreManager: currentUser._id
       }
 
-      console.log(newTestCentre);
-
-
-      this.http.post("http://localhost:3000/api/testcentre",newTestCentre)
+      this.http.post<{message: string,centreId: string}>("http://localhost:3000/api/testcentre",newTestCentre)
         .subscribe(responseData => {
-            console.log(responseData);
+            const newCentreId = responseData.centreId;
+            newTestCentre.centreID = newCentreId
+
+            this.authService.getUser().centreId = newCentreId;
+            const updatedManager = this.authService.getUser();
+
+            console.log(updatedManager);
+
+            this.http.put<{message: string}>("http://localhost:3000/api/updateManagerTestCentre/" + updatedManager._id, updatedManager)
+              .subscribe(responseData => {
+                  this.newCenterUpdated.next(newTestCentre);
+              })
       })
   }
 }

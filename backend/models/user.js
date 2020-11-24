@@ -8,6 +8,7 @@ const userSchema = mongoose.Schema({
   position: {type: String, required: false},
   patientType: {type: String, required: false},
   symptoms: {type: String, required: false},
+  centreId: {type: String, required: false}
 });
 
 userSchema.plugin(uniqueValidator);

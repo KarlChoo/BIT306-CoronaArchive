@@ -9,7 +9,10 @@ import { AuthData } from "../model/auth-data.model";
 })
 export class AuthService {
 
+
   private token: string;
+  private user: any;
+  private userType: string;
   private authStatusListener = new Subject<any>();
   constructor(private http: HttpClient, private router:Router) {}
 
@@ -17,8 +20,22 @@ export class AuthService {
     return this.token;
   }
 
+  getUser(){
+    return this.user;
+  }
+
+  getUserType(){
+    return this.userType;
+  }
+
   getAuthStatusListener(){
     return this.authStatusListener.asObservable();
+  }
+
+  logout() {
+    this.token = null;
+    this.user = null;
+    this.userType = null;
   }
 
   login(username: string, password: string) {
@@ -29,14 +46,35 @@ export class AuthService {
           const token = response.token;
           const user = response.user
           this.token = token;
-          console.log(user);
+          this.user = user
+
+
+          let userType;
+          if(user.position === "manager") userType = "manager"
+          else if(user.position === "tester") userType = "tester"
+          else if(user.position === "admin") userType = "admin"
+          else userType = "patient"
+
+          this.userType = userType;
+
           this.authStatusListener.next(
             {
               token: token,
-              user: user
+              user: user,
+              userType: userType
             }
-          )
-          this.router.navigate(["/register"]);
-      })
+           )
+
+          if(userType === "manager") this.router.navigate(["/register"]);
+          else if(userType === "tester") this.router.navigate(["/newTest"]);
+          else if(userType === "admin") this.router.navigate(["/centresPage"]);
+          else this.router.navigate(["/resultPage"]);
+
+
+        },
+        (error) => {
+          //console.log(error);
+        }
+      )
   }
 }

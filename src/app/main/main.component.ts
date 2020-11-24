@@ -11,9 +11,10 @@ import { MainService } from "./main.service";
 })
 export class MainComponent implements OnInit {
 
-  isOpened: boolean = false;
+  isOpened: boolean = true;
   token: string;
   user: any;
+  userType: string;
   private authListenerSubs: Subscription;
   constructor(public mainService: MainService, public authService:AuthService, private router:Router) { }
 
@@ -22,6 +23,7 @@ export class MainComponent implements OnInit {
     .subscribe(subData =>{
         this.token = subData.token;
         this.user = subData.user;
+        this.userType = subData.userType;
     })
   }
 
@@ -30,8 +32,8 @@ export class MainComponent implements OnInit {
   }
 
   logout(){
-    this.token = "";
+    this.authService.logout();
     alert("Logout successful");
-    this.router.navigate(["/"]);
+    this.router.navigate(["/login"]);
   }
 }

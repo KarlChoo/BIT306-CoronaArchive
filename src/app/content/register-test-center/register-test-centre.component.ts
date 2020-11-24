@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Centre } from 'src/app/model/centre.model';
 import { TestCenterService } from "../centres/test-centre.service";
-import { Centre } from "../../model/centre.model";
 
 @Component({
   selector: 'app-register-test-centre',
@@ -9,9 +11,19 @@ import { Centre } from "../../model/centre.model";
   styleUrls: ['./register-test-centre.component.css']
 })
 export class RegisterTestCentreComponent implements OnInit {
-  constructor(public testCenterService:TestCenterService) { }
+
+  newCentre;
+  private newCentreSub: Subscription
+
+  constructor(public testCenterService:TestCenterService, public authService: AuthService) { }
 
   ngOnInit(): void {
+      this.newCentreSub = this.testCenterService.getNewCentreListener()
+        .subscribe(newCentre => {
+            this.newCentre = newCentre
+            console.log(this.newCentre);
+
+        })
   }
 
   registerTestCenter(formData: NgForm){
@@ -19,7 +31,7 @@ export class RegisterTestCentreComponent implements OnInit {
       return;
     }
 
-    this.testCenterService.addNewTestCenter(formData.value.centreName);
+    this.testCenterService.addNewTestCenter(formData.value.centreName, this.authService.getUser());
     formData.resetForm();
   }
 }

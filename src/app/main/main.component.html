@@ -1,32 +1,36 @@
-<app-login *ngIf="!token"></app-login>
-<div *ngIf="token">
+<app-login *ngIf="!this.authService.getToken()"></app-login>
+<div *ngIf="this.authService.getToken()">
 <app-header (sidenavEvent)="toggleSidenav()" (logoutEvent)="logout()"></app-header>
 <mat-sidenav-container class="app-container" >
   <mat-sidenav #sidenav id="sidenav" mode="side" [opened]="isOpened">
     <div id="profileInfo">
-      <h1>Karl Choo</h1>
-      <h3>Manager</h3>
+      <h1>{{this.authService.getUser().name}}</h1>
+      <h3>{{this.authService.getUserType().toUpperCase()}}</h3>
     </div>
     <mat-divider></mat-divider>
 
     <!--Admin-->
-    <button mat-raised-button routerLinkActive="active" routerLink="/centresPage" >Centres</button>
+    <span *ngIf="this.authService.getUserType() === 'admin'">
+      <button mat-raised-button routerLinkActive="active" routerLink="/centresPage" >Centres</button>
+    </span>
 
     <!-- Manager menu-->
-    <span *ngIf="user.position === ''">
-      <button mat-raised-button routerLinkActive="active" routerLink="/centresPage" >Centres</button>
+    <span *ngIf="this.authService.getUserType() === 'manager'">
       <button mat-raised-button routerLinkActive="active" routerLink="/register" >Register Centre</button>
       <button mat-raised-button routerLinkActive="active" routerLink="/tester" >Register Tester</button>
       <button mat-raised-button routerLinkActive="active" routerLink="/testkit" >Test Kits</button>
       <button mat-raised-button routerLinkActive="active" routerLink="/report" >Report</button>
     </span>
     <!--Tester menu-->
-    <button mat-raised-button routerLinkActive="active" routerLink="/resultPage">Result</button>
-    <button mat-raised-button routerLinkActive="active" routerLink="/newTest" >Manage Test and Results</button>
-    <button mat-raised-button routerLinkActive="active" routerLink="/report" >Report</button>
-
+    <span *ngIf="this.authService.getUserType() === 'tester'">
+      <button mat-raised-button routerLinkActive="active" routerLink="/resultPage">Result</button>
+      <button mat-raised-button routerLinkActive="active" routerLink="/newTest" >Manage Test and Results</button>
+      <button mat-raised-button routerLinkActive="active" routerLink="/report" >Report</button>
+    </span>
     <!--Patient menu-->
-    <button mat-raised-button routerLinkActive="active" routerLink="/resultPage">Result</button>
+    <span *ngIf="this.authService.getUserType() === 'patient'">
+      <button mat-raised-button routerLinkActive="active" routerLink="/resultPage">Result</button>
+    </span>
 
   </mat-sidenav>
   <mat-sidenav-content>

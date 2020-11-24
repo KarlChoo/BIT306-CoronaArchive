@@ -2,10 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
 
 //Models
 const Officer = require("./models/officer");
 const TestCentre = require("./models/testcentre");
+const User = require("./models/user")
 
 const app = express();
 
@@ -29,16 +31,28 @@ app.use((req, res, next) =>{
 //Login related API
 app.post("/api/login", (req,res,next) => {
   let fetchedUser;
-  Officer.findOne({username: req.body.username})
+  User.findOne({username: req.body.username})
     .then(user =>{
+      //Find user valdiation
       if(!user){
         return res.status(401).json({
           message: "User not found in database"
         })
       }
       fetchedUser = user
+
+      //console.log(bcrypt.compare(req.body.password, user.password));
+      //console.log(user.password === req.body.password);
+      return user.password === req.body.password || bcrypt.compare(req.body.password, user.password);
     })
     .then(result => {
+      if(typeof result === "object") return result;
+      //Password wrong
+      if(!result){
+        return res.status(401).json({
+          message: "Auth failed"
+        })
+      }
       const token = jwt.sign(
         {username: fetchedUser.username, userId: fetchedUser._id},
         "coronarchive", //Crypto Key
@@ -54,6 +68,7 @@ app.post("/api/login", (req,res,next) => {
         message: "Auth failed"
       })
     })
+
 })
 
 //Test centre related API
@@ -68,14 +83,25 @@ app.get("/api/testcentre", (req, res, next)=>{
 
 app.post("/api/testcentre", (req, res, next)=>{
     const testcentre = new TestCentre({
-        centreName: req.body.centreName
+        centreName: req.body.centreName,
+        centreManager: req.body.centreManager
     });
 
     testcentre.save().then(newCentre =>{
       res.status(200).json({
         message: "Centre added successfully",
+        centreId: newCentre._id
       });
     })
+})
+
+app.put("/api/updateManagerTestCentre/:id", (req,res, next) =>{
+    User.updateOne({_id:req.params.id},{centreId: req.body.centreId})
+      .then(result =>{
+        res.status(200).json({
+          message: "User updated"
+        });
+      })
 })
 
 //Officer related API
