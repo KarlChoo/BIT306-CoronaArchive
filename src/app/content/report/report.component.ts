@@ -17,17 +17,20 @@ export class ReportComponent implements OnInit,AfterViewInit {
   breakpoint:number;
   dimensionRatio;
 
+  displayedColumns: string[] = ['testID', 'testDate', 'username', 'patientType','symptom','status','result'];
+  dataSource = new MatTableDataSource<Test>(this.testService.getTestList());
+
   constructor(public reportService:ReportService, public testService:TestsService, public authService:AuthService) { }
 
   ngOnInit() {
     this.authService.validateManagerAccess();
+    this.reportService.getAllCentreTest(this.authService.getUser().centreId);
     this.breakpoint = (window.innerWidth <= 1000) ? 1 : 3;
     this.dimensionRatio = (window.innerWidth <= 1000) ? "2:0.5" : "2.5:1";
     this.testList = this.testService.getTestList();
   }
 
-  displayedColumns: string[] = ['testID', 'testDate', 'username', 'patientType','symptom','status','result'];
-  dataSource = new MatTableDataSource<Test>(this.testService.getTestList());
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

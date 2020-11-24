@@ -300,4 +300,24 @@ app.put("/api/update-testkit/:id", (req,res,next) => {
     })
 })
 
+//Report API
+app.get("/api/allCentreTests/:id", (req,res,next) => {
+  User.find({position: "tester",centreId: req.params.id}).then((documents) => {
+      let testerIds = [];
+      documents.forEach(test=>{
+          testerIds.push(test._id)
+      })
+      return testerIds;
+  }).then(testerIds => {
+    console.log(testerIds);
+    Test.find({testerID: {$in: testerIds}}).then(documents => {
+      res.status(200).json({
+        message: "Test Centre tests got successfully",
+        tests: documents
+      });
+    })
+  })
+})
+
+
 module.exports = app;
