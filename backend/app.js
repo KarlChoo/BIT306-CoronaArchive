@@ -7,13 +7,9 @@ const bcrypt = require("bcrypt")
 //Models
 //const Officer = require("./models/officer");
 const TestCentre = require("./models/testcentre");
-<<<<<<< Updated upstream
-const User = require("./models/user")
-const TestKit = require("./models/testkit");
-=======
 const User = require("./models/user");
+const TestKit = require("./models/testkit");
 const Test = require("./models/test");
->>>>>>> Stashed changes
 
 const app = express();
 
@@ -138,7 +134,6 @@ app.get('/api/login', (req, res, next) =>{
 });
 */
 
-<<<<<<< Updated upstream
 //Tester related API
 app.post("/api/register-tester", (req,res,next) => {
   console.log(req.body);
@@ -184,8 +179,9 @@ app.delete("/api/delete-tester/:id", (req,res,next) => {
   })
   .catch(err => {
     res.status(200).json({
-      message: "Delete tester fail"
-=======
+      message: "Delete tester fail"})
+    })
+  }
 //Dylan's Blocks
 
 app.post("/api/newPatient", (req, res, next) =>{
@@ -245,12 +241,10 @@ app.get("/api/pendingTests", (req, res, next)=>{
     res.status(200).json({
       message: "Pending Tests fetched successfully.",
       pTests: document
->>>>>>> Stashed changes
     });
   })
 })
 
-<<<<<<< Updated upstream
 //Test Kit related API
 app.post("/api/add-testkit", (req,res,next) => {
     const testKit = new TestKit({
@@ -290,6 +284,4 @@ app.put("/api/update-testkit/:id", (req,res,next) => {
     })
 })
 
-=======
->>>>>>> Stashed changes
-module.exports = app;
+
