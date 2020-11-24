@@ -181,7 +181,6 @@ app.delete("/api/delete-tester/:id", (req,res,next) => {
     res.status(200).json({
       message: "Delete tester fail"})
     })
-  }
 //Dylan's Blocks
 
 app.post("/api/newPatient", (req, res, next) =>{
@@ -284,4 +283,4 @@ app.put("/api/update-testkit/:id", (req,res,next) => {
     })
 })
 
-
+module.exports = app;
