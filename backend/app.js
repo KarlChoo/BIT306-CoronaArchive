@@ -7,12 +7,13 @@ const bcrypt = require("bcrypt")
 //Models
 //const Officer = require("./models/officer");
 const TestCentre = require("./models/testcentre");
-const User = require("./models/user")
+const User = require("./models/user");
 const TestKit = require("./models/testkit");
+const Test = require("./models/test");
 
 const app = express();
 
-mongoose.connect("mongodb+srv://zulul:TyA3dm8a94XADnUX@cluster0.wpsie.mongodb.net/coronarchive?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://Dylan:JMvjusY2QdkmLgNb@cluster0.dxdkj.mongodb.net/coronArchive?retryWrites=true&w=majority")
   .then(() => {
     console.log("Connected to database")
   })
@@ -178,7 +179,68 @@ app.delete("/api/delete-tester/:id", (req,res,next) => {
   })
   .catch(err => {
     res.status(200).json({
-      message: "Delete tester fail"
+      message: "Delete tester fail"})
+    })
+  }
+//Dylan's Blocks
+
+app.post("/api/newPatient", (req, res, next) =>{
+  const patient = new User({
+    username: req.body.username,    //initialise the Post model and store data coming from
+    password: req.body.password,
+    name: req.body.name,
+    patientType: req.body.patientType,
+    symptoms: req.body.symptoms,
+ });
+// save patient
+patient.save().then(newPatient => {
+  console.log(patient);
+  res.status(200).json({
+    message: "Patient registered successfully!",
+    patient: newPatient
+  });
+});
+
+});
+
+//add new test
+app.post("/api/newTest", (req, res, next) =>{
+  const test = new Test({
+    testDate: req.body.testDate,
+    username: req.body.username,
+    patientType: req.body.patientType,
+    symptom: req.body.symptom,
+    status: req.body.status,
+    testerID: req.body.testerID
+ });
+// save patient
+test.save().then(newTest => {
+  console.log(test);
+  res.status(200).json({
+    message: "Test created successfully!",
+    test: newTest
+  });
+});
+
+});
+
+//Reading data from db to service
+app.get('/api/patients',(req,res,next) => {
+  User.find().then(document => {
+    res.status(200).json({
+      message: 'Users fetched successfully!',
+      patients: document
+    });
+  })
+});
+
+//get pending tests
+//Test centre related API
+app.get("/api/pendingTests", (req, res, next)=>{
+  Test.find({status: "Pending"}).then(document => {
+    res.status(200).json({
+      message: "Pending Tests fetched successfully.",
+      pTests: document
     });
   })
 })
@@ -222,4 +284,4 @@ app.put("/api/update-testkit/:id", (req,res,next) => {
     })
 })
 
-module.exports = app;
+

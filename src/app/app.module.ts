@@ -39,6 +39,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule}  from '@angular/material/checkbox';
 import { MatListModule } from "@angular/material/list";
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 //Auth
 import { AuthInterceptor } from "./auth/auth-interceptor";
@@ -80,7 +81,8 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
     MatTabsModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatListModule
+    MatListModule,
+    MatAutocompleteModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
