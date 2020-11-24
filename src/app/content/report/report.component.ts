@@ -4,6 +4,7 @@ import { TestsService } from "../test/tests.service";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Test } from "../../model/Test.model";
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-report',
@@ -16,9 +17,10 @@ export class ReportComponent implements OnInit,AfterViewInit {
   breakpoint:number;
   dimensionRatio;
 
-  constructor(public reportService:ReportService, public testService:TestsService) { }
+  constructor(public reportService:ReportService, public testService:TestsService, public authService:AuthService) { }
 
   ngOnInit() {
+    this.authService.validateManagerAccess();
     this.breakpoint = (window.innerWidth <= 1000) ? 1 : 3;
     this.dimensionRatio = (window.innerWidth <= 1000) ? "2:0.5" : "2.5:1";
     this.testList = this.testService.getTestList();
