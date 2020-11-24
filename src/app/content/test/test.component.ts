@@ -17,6 +17,7 @@ import { map } from 'rxjs/operators';
 })
 export class TestComponent implements OnInit, AfterViewInit {
 
+  selectedRes: string;
   // arrays
   pTestList: Test[] = [];
   patientList: User[] = [];
@@ -38,7 +39,7 @@ export class TestComponent implements OnInit, AfterViewInit {
     this.patientsSub = this.testService.getPatientUpdatedListener()
       .subscribe((patients: User[]) => {
         this.patientList = patients;
-        this.filterPatient();
+        this.filterPatient(this.patientList);
       });
 
     //pending transactions
@@ -123,19 +124,20 @@ export class TestComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  displayUpdate(testID){
-    //generate date
-     var todayDate = new Date().toLocaleString();
-    //console.log(testID);
-    alert("Test " + testID  + " update Completed at \n" + todayDate + ".");
-  }
-
   //filter
-  filterPatient(){
-    const patientsOnly = this.patientList;
+  filterPatient(thePatients){
     //console.log(this.patientList);
-    const result = patientsOnly.filter(patientsOnly => patientsOnly.patientType != undefined);
+    const result = thePatients.filter(patientsOnly => patientsOnly.patientType != undefined);
     this.patientOptions = result;
   }
 
+  //update test
+  updateTest(test: Test){
+    let posNeg = document.getElementById(test.testId).querySelectorAll("input")[0];
+    let updatedRes = String(posNeg.value);
+    //console.log(test.testId);
+    var todayDate = new Date().toLocaleString();
+    this.testService.updateTestResult(test, updatedRes, todayDate);
+    //alert("Test " + test.testId  + " update Completed at \n" + todayDate + ".");
+  }
  }

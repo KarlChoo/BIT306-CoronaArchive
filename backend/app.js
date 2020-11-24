@@ -241,6 +241,27 @@ app.get("/api/pendingTests", (req, res, next)=>{
   })
 })
 
+app.put("/api/updateTest/:id", (req,res,next) => {
+  console.log(req.body);
+  Test.updateOne({_id:req.params.id},req.body)
+  .then(result =>{
+    res.status(200).json({
+      message: "Test updated."
+    });
+  })
+})
+
+app.get("/api/patientResult/:id", (req, res, next)=>{
+  Test.find({username: req.params.id}).then(document => {
+    res.status(200).json({
+      message: "Results fetched successfully.",
+      pResults: document
+    });
+  })
+})
+
+//Dylan end
+
 //Test Kit related API
 app.post("/api/add-testkit", (req,res,next) => {
     const testKit = new TestKit({

@@ -1,4 +1,5 @@
 export interface Test {
+  testId?: string;
   testDate: string;
   username: string;
   patientType: string;
