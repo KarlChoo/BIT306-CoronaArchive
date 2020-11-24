@@ -1,5 +1,5 @@
 export interface Centre {
-  centreID: string;
+  centreId: string;
   centreName: string;
   centreManager: string
 }

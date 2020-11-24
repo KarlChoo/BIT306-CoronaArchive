@@ -5,9 +5,10 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 
 //Models
-const Officer = require("./models/officer");
+//const Officer = require("./models/officer");
 const TestCentre = require("./models/testcentre");
 const User = require("./models/user")
+const TestKit = require("./models/testkit");
 
 const app = express();
 
@@ -87,11 +88,27 @@ app.post("/api/testcentre", (req, res, next)=>{
         centreManager: req.body.centreManager
     });
 
-    testcentre.save().then(newCentre =>{
+    testcentre.save()
+    .then(newCentre =>{
       res.status(200).json({
         message: "Centre added successfully",
         centreId: newCentre._id
       });
+    })
+    .catch(err => {
+      res.status(200).json({
+        message: "fail",
+        centreId: null
+      });
+    })
+})
+
+app.get("/api/getOneTestCentre/:id", (req,res,next)=> {
+    TestCentre.findOne({_id:req.params.id})
+      .then(testCentre =>{
+        res.status(200).json({
+          testCentre: testCentre
+        });
     })
 })
 
@@ -115,5 +132,94 @@ app.get('/api/login', (req, res, next) =>{
   })
 });
 */
+
+//Tester related API
+app.post("/api/register-tester", (req,res,next) => {
+  console.log(req.body);
+  bcrypt.hash(req.body.password, 10)
+    .then(hash => {
+      const user = new User({
+        username: req.body.username,
+        password: hash,
+        name: req.body.name,
+        position: req.body.position,
+        centreId: req.body.centreId
+      })
+
+      user.save()
+        .then(newTester => {
+          res.status(201).json({
+            message: "Tester created",
+            kitId: newTester._id
+          })
+      })
+      .catch(err => {
+          res.status(500).json({
+            error: err
+          })
+      })
+    })
+})
+
+app.get("/api/testers/:id", (req,res,next) => {
+  User.find({position: "tester",centreId: req.params.id}).then((documents) => {
+    res.status(200).json({
+      message: "post fetched successfully",
+      testers: documents
+    });
+  })
+})
+
+app.delete("/api/delete-tester/:id", (req,res,next) => {
+  User.deleteOne({_id: req.params.id}).then(result =>{
+    res.status(200).json({
+      message: "Tester deleted"
+    });
+  })
+  .catch(err => {
+    res.status(200).json({
+      message: "Delete tester fail"
+    });
+  })
+})
+
+//Test Kit related API
+app.post("/api/add-testkit", (req,res,next) => {
+    const testKit = new TestKit({
+        kitName: req.body.kitName,
+        stock: req.body.stock,
+        centreId: req.body.centreId
+    })
+    testKit.save().then(newTestKit => {
+        res.status(201).json({
+          message: "Test Kit created",
+          kitId: newTestKit._id
+        })
+    })
+    .catch(err => {
+        res.status(500).json({
+          error: err
+        })
+    })
+})
+
+app.get("/api/testkits/:id", (req,res,next) => {
+    TestKit.find({centreId:req.params.id}).then((documents) => {
+      res.status(200).json({
+        message: "post fetched successfully",
+        testKits: documents
+      });
+    })
+})
+
+app.put("/api/update-testkit/:id", (req,res,next) => {
+    console.log(req.body);
+    TestKit.updateOne({_id:req.params.id},{stock:req.body.stock})
+    .then(result =>{
+      res.status(200).json({
+        message: "Test Kit updated"
+      });
+    })
+})
 
 module.exports = app;

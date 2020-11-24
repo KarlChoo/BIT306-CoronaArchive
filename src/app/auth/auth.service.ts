@@ -38,6 +38,19 @@ export class AuthService {
     this.userType = null;
   }
 
+  validateManagerAccess(){
+    /*
+    if(!this.getToken() || this.getUserType() !== "manager"){
+      alert("Inavlid access, please login again")
+      this.router.navigate(["/login"]);
+    }
+    */
+    if(!this.getUser().centreId){
+      alert("Please register a centre name first")
+      this.router.navigate(["/register"]);
+    }
+  }
+
   login(username: string, password: string) {
     const authData: AuthData = {username: username, password: password}
 

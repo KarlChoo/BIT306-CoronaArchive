@@ -12,18 +12,28 @@ import { TestCenterService } from "../centres/test-centre.service";
 })
 export class RegisterTestCentreComponent implements OnInit {
 
-  newCentre;
+  newCentre: Centre;
   private newCentreSub: Subscription
 
   constructor(public testCenterService:TestCenterService, public authService: AuthService) { }
 
   ngOnInit(): void {
+      this.initTestCentre();
       this.newCentreSub = this.testCenterService.getNewCentreListener()
         .subscribe(newCentre => {
             this.newCentre = newCentre
-            console.log(this.newCentre);
-
         })
+  }
+
+  initTestCentre(){
+      const currentUser = this.authService.getUser();
+      if(currentUser.centreId){
+        this.testCenterService.getTestCentre(currentUser.centreId)
+        this.newCentreSub = this.testCenterService.getNewCentreListener()
+        .subscribe(newCentre => {
+            this.newCentre = newCentre
+        })
+      }
   }
 
   registerTestCenter(formData: NgForm){

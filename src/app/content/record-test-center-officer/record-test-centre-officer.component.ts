@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { TestCentreOfficerService } from "./test-centre-officer.service";
+import { AuthService } from 'src/app/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-record-test-centre-officer',
@@ -12,20 +14,34 @@ import { TestCentreOfficerService } from "./test-centre-officer.service";
   styleUrls: ['./record-test-centre-officer.component.css']
 })
 export class RecordTestCentreOfficerComponent implements OnInit,AfterViewInit {
-  constructor(public testCenterOfficerService:TestCentreOfficerService) { }
 
-  ngOnInit(): void {
-  }
-
-  columnName: string[] = ['username', 'password', 'name', 'position','action'];
-  dataSource = new MatTableDataSource<Officer>(this.testCenterOfficerService.getTesterList());
+  private testersSub: Subscription;
+  columnName: string[] = ['userId','username', 'name','action'];
+  dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  constructor(public testCenterOfficerService:TestCentreOfficerService, public authService: AuthService) { }
+
+  ngOnInit(): void {
+      this.authService.validateManagerAccess()
+      this.testCenterOfficerService.getTesters(this.authService.getUser().centreId)
+      this.testersSub = this.testCenterOfficerService.getPostsUpdated()
+        .subscribe((testers: Officer[]) => {
+            this.dataSource.data = testers;
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        })
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  ngOnDestroy() : void {
+    this.testersSub.unsubscribe();
   }
 
   recordNewTester(formData: NgForm){
@@ -38,7 +54,8 @@ export class RecordTestCentreOfficerComponent implements OnInit,AfterViewInit {
         username: formData.value.username,
         password: formData.value.password,
         name: formData.value.name,
-        position: "Tester"
+        position: "tester",
+        centreId: this.authService.getUser().centreId
     }
     this.testCenterOfficerService.addNewTester(newTester)
     //alert("The new officer has been created");

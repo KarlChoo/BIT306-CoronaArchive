@@ -1,5 +1,6 @@
 export interface TestKit {
-    kitID: string;
+    kitId?: string;
     kitName: string;
     stock: number;
+    centreId?: string;
 }

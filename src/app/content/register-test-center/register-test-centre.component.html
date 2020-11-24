@@ -1,19 +1,21 @@
 <div>
   <mat-card class="mat-elevation-z8" id="register-container">
     <mat-card-header>
-      <mat-card-title>Register Center Name</mat-card-title>
+      <mat-card-title *ngIf="!this.newCentre">Register Center Name</mat-card-title>
+      <mat-card-title  *ngIf="this.newCentre">Welcome to, {{newCentre.centreName}} Test Centre</mat-card-title>
+
     </mat-card-header>
     <form #postForm="ngForm" (submit)="registerTestCenter(postForm)" id="newOfficer" ngNativeValidate>
       <mat-card-content>
         <mat-form-field appearance="outline">
           <mat-label>Center name</mat-label>
-          <input matInput ngModel #centreName="ngModel" type="text" name="centreName" placeholder="Centre name" required>
-          <input matInput ngModel #centreName="ngModel" type="text" name="centreName" placeholder="Centre name" required *ngIf="this.newCentre" [value]="this.newCentre.centreName" [disabled]="this.newCentre">
+          <input matInput ngModel #centreName="ngModel" type="text" name="centreName" placeholder="Centre name" required [disabled]="this.newCentre">
           <mat-error *ngIf="centreName.invalid">Enter a name</mat-error>
         </mat-form-field>
+        <mat-label *ngIf="this.newCentre">Test Centre ID: {{this.newCentre.centreId}}</mat-label>
       </mat-card-content>
       <mat-card-actions align="end">
-        <button mat-raised-button	color="primary" type="submit">Register Name</button>
+        <button mat-raised-button	color="primary" type="submit" [disabled]="this.newCentre">Register Name</button>
       </mat-card-actions>
     </form>
   </mat-card>

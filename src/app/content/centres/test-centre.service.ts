@@ -27,7 +27,7 @@ export class TestCenterService {
   */
   private testCentreList: Centre[] = [];
   private testCentreListUpdated = new Subject<Centre[]>();
-  private newCenterUpdated = new Subject();
+  private newCenterUpdated = new Subject<Centre>();
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -78,25 +78,48 @@ export class TestCenterService {
       //this.testCentreList.push(newTestCenter);
       //this.testCentreListUpdated.next([...this.testCentreList]);
       const newTestCentre: Centre = {
-        centreID:  null,
+        centreId:  null,
         centreName: centreName,
         centreManager: currentUser._id
       }
 
       this.http.post<{message: string,centreId: string}>("http://localhost:3000/api/testcentre",newTestCentre)
         .subscribe(responseData => {
+            //Alert message
+            if(responseData.message === "fail"){
+              alert("Test centre name has already taken")
+              return;
+            }else alert(responseData.message);
+
             const newCentreId = responseData.centreId;
-            newTestCentre.centreID = newCentreId
+            newTestCentre.centreId = newCentreId
 
             this.authService.getUser().centreId = newCentreId;
             const updatedManager = this.authService.getUser();
 
-            console.log(updatedManager);
+            console.log(newTestCentre);
+            this.newCenterUpdated.next(newTestCentre);
+
 
             this.http.put<{message: string}>("http://localhost:3000/api/updateManagerTestCentre/" + updatedManager._id, updatedManager)
               .subscribe(responseData => {
-                  this.newCenterUpdated.next(newTestCentre);
+                  //this.newCenterUpdated.next(newTestCentre);
               })
+      })
+  }
+
+  getTestCentre(centreId: string){
+    this.http.get<{testCentre: any}>("http://localhost:3000/api/getOneTestCentre/" + centreId)
+      .pipe(map(data =>{
+          return {
+            centreId: data.testCentre._id,
+            centreName: data.testCentre.centreName,
+            centreManager: data.testCentre.centreManager
+          }
+       })
+      )
+      .subscribe(remapedTestCentre =>{
+        this.newCenterUpdated.next(remapedTestCentre);
       })
   }
 }
