@@ -41,7 +41,7 @@ export class TestKitService {
 
       this.http.put("http://localhost:3000/api/update-testkit/" + testKit.kitId, updatedTestKit)
         .subscribe(responseData => {
-            alert("Test Kit with ID " + testKit.kitId + " is updated")
+            alert("Test Kit " + testKit.kitName + " is updated")
             console.log(this.testKitList);
             for(let i=0; i < this.testKitList.length;i++){
                 if(this.testKitList[i].kitId === updatedTestKit.kitId){
