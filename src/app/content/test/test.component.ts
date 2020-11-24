@@ -29,7 +29,7 @@ export class TestComponent implements OnInit, AfterViewInit {
 
    //bind with pending tests table
    displayedColumns: string[] = ['testID', 'testDate', 'username', 'patientType','symptom','status','result','update'];
-   dataSource = new MatTableDataSource<Test[]>();
+   dataSource = new MatTableDataSource();
 
   constructor(public testService:TestsService, public authService: AuthService) {}
 
@@ -47,7 +47,7 @@ export class TestComponent implements OnInit, AfterViewInit {
     this.testsSub = this.testService.getPendingTestUpdatedListener()
       .subscribe((pTests: Test[]) => {
         this.pTestList = pTests;
-        this.dataSource = pTests;
+        this.dataSource.data = pTests;
         //this.dataSource.paginator = this.paginator;
         //this.dataSource.sort = this.sort;
       });

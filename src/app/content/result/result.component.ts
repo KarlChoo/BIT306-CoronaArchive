@@ -27,7 +27,7 @@ export class ResultComponent implements OnInit {
     this.resultSubs = this.testService.getPatientResultUpdatedListener()
       .subscribe((pResult: Test[]) => {
         this.pResultList = pResult;
-        this.dataSource = pResult;
+        this.dataSource.data = pResult;
         this.thePatientList = pResult;
         //this.dataSource.paginator = this.paginator;
         //this.dataSource.sort = this.sort;
@@ -36,6 +36,6 @@ export class ResultComponent implements OnInit {
 
   //bind with table
   displayedColumns: string[] = ['testID', 'testDate', 'username', 'patientType','symptom','status','result','resultDate', 'TesterID'];
-  dataSource = new MatTableDataSource<Test>();
+  dataSource = new MatTableDataSource();
 
 }

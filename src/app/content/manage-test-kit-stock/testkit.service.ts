@@ -58,6 +58,7 @@ export class TestKitService {
     this.http.get<{message: string,testKits: TestKit[]}>("http://localhost:3000/api/testkits/" + centreId)
       .pipe(map(teskitData => {
         return teskitData.testKits.map(testkit => {
+          console.log(testkit);
           return {
             kitId: testkit._id,
             kitName: testkit.kitName,
