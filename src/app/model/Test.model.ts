@@ -1,5 +1,4 @@
 export interface Test {
-  testID: string;
   testDate: string;
   username: string;
   patientType: string;
@@ -7,4 +6,5 @@ export interface Test {
   status: string;
   result?: string;
   resultDate?: string;
+  testerID: string;
 }

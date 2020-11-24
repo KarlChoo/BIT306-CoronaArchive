@@ -6,7 +6,9 @@ import { User } from "../../model/user.model";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TestsService } from "./tests.service";
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-test',
@@ -16,61 +18,62 @@ import { Subscription } from 'rxjs';
 export class TestComponent implements OnInit, AfterViewInit {
 
   // arrays
-  testList: Test[] = [];
+  pTestList: Test[] = [];
   patientList: User[] = [];
+  //automcomplete options
+  patientOptions: User[];
   //subs
   private patientsSub: Subscription;
+  private testsSub: Subscription;
 
-  constructor(public testService:TestsService) {}
+   //bind with pending tests table
+   displayedColumns: string[] = ['testID', 'testDate', 'username', 'patientType','symptom','status','result','update'];
+   dataSource = new MatTableDataSource<Test[]>();
+
+  constructor(public testService:TestsService, public authService: AuthService) {}
 
   ngOnInit(): void {
-    this.testList = this.testService.getTestList();
-    this.testService.getPatients(); //call the service to get all patients
+    //call the service to get all patients
+    this.testService.getPatients();
     this.patientsSub = this.testService.getPatientUpdatedListener()
       .subscribe((patients: User[]) => {
         this.patientList = patients;
+        this.filterPatient();
       });
-  }
 
-  //bind with table
-  displayedColumns: string[] = ['testID', 'testDate', 'username', 'patientType','symptom','status','result','update'];
-  dataSource = new MatTableDataSource<Test>(this.testService.getTestList());
+    //pending transactions
+    this.testService.getPendingTests();
+    this.testsSub = this.testService.getPendingTestUpdatedListener()
+      .subscribe((pTests: Test[]) => {
+        this.pTestList = pTests;
+        this.dataSource = pTests;
+        //this.dataSource.paginator = this.paginator;
+        //this.dataSource.sort = this.sort;
+      });
+
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  //method
-  //creating new test for new patient
-  //register new patient as well
+  //register and add test for the new patient
   recordNewTest(formData: NgForm){
       if (formData.invalid){
         return;
       }
       //generate date
       var todayDate = new Date().toLocaleString();
-      //generate ID
-      var newID = this.testService.generateTestID();
-      //create new test
-      const newTest: Test = {
-        testID: newID,
-        testDate: todayDate,
-        username: formData.value.username,
-        patientType: formData.value.patientType,
-        symptom: formData.value.symptom,
-        status: "Pending"
-      }
+      var theTester = this.authService.getUser();
+      //console.log(theTester._id);
 
       //add the test
-      this.testService.addNewTest(newTest);
+      this.testService.addNewTest(todayDate, formData.value.username, formData.value.patientType, formData.value.symptom, theTester._id);
       //register the user
       this.testService.addNewPatient(formData.value.username,formData.value.password, formData.value.fullname, formData.value.patientType, formData.value.symptom);
 
-      //extra
-      //console.log(this.testList);
       formData.resetForm();
       this.refreshTable();
-      alert("Test ID:" + newID + " Successfully Added.");
+      alert("Test created Successfully.");
       //alert("Username: " + formData.value.fullname + " Registered Successfully.");
-      //console.log(newPatient.symptoms);
   }
 
   //creating new rest for existing patient
@@ -78,24 +81,31 @@ export class TestComponent implements OnInit, AfterViewInit {
     if (formData.invalid){
       return;
     }
-    //generate date
-    var todayDate = new Date().toLocaleString();
-    //generate ID
-    var newID = this.testService.generateTestID();
-    const newTest: Test = {
-      testID: newID,
-      testDate: todayDate,
-      username: formData.value.username,
-      patientType: formData.value.patientType,
-      symptom: formData.value.symptom,
-      status: "Pending"
+    let exist = false;
+    //check if its valid username
+    var i;
+    for (i = 0; i < this.patientOptions.length; i++) {
+      if(this.patientOptions[i].username == formData.value.username){
+        exist = true;
+      }
     }
-    this.testService.addNewTest(newTest);
-    console.log(this.testList);
-    formData.resetForm();
-    this.refreshTable();
-    alert("Test ID:" + newID + " Successfully Added.");
+    if(exist == false){
+      alert("Sorry, User Does Not Exist. Please Try Again.");
+      return;
+
+    }else{
+     //generate date
+     var todayDate = new Date().toLocaleString();
+     var theTester = this.authService.getUser();
+
+     //add the test
+     this.testService.addNewTest(todayDate, formData.value.username, formData.value.patientType, formData.value.symptom, theTester._id);
+     formData.resetForm();
+     this.refreshTable();
+     alert("Test created Successfully.");
+    }
   }
+
     //drop down lists
     patientType: PatientType[] = [
       {value: 'returnee', viewValue: 'Returnee'},
@@ -118,6 +128,14 @@ export class TestComponent implements OnInit, AfterViewInit {
      var todayDate = new Date().toLocaleString();
     //console.log(testID);
     alert("Test " + testID  + " update Completed at \n" + todayDate + ".");
+  }
+
+  //filter
+  filterPatient(){
+    const patientsOnly = this.patientList;
+    //console.log(this.patientList);
+    const result = patientsOnly.filter(patientsOnly => patientsOnly.patientType != undefined);
+    this.patientOptions = result;
   }
 
  }
