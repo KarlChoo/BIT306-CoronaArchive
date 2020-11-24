@@ -13,7 +13,7 @@ const Test = require("./models/test");
 
 const app = express();
 
-mongoose.connect("mongodb+srv://Dylan:JMvjusY2QdkmLgNb@cluster0.dxdkj.mongodb.net/coronArchive?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://zulul:TyA3dm8a94XADnUX@cluster0.wpsie.mongodb.net/coronarchive?retryWrites=true&w=majority")
   .then(() => {
     console.log("Connected to database")
   })
@@ -136,7 +136,6 @@ app.get('/api/login', (req, res, next) =>{
 
 //Tester related API
 app.post("/api/register-tester", (req,res,next) => {
-  console.log(req.body);
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
       const user = new User({
@@ -151,7 +150,7 @@ app.post("/api/register-tester", (req,res,next) => {
         .then(newTester => {
           res.status(201).json({
             message: "Tester created",
-            kitId: newTester._id
+            newTester: newTester
           })
       })
       .catch(err => {
@@ -177,11 +176,9 @@ app.delete("/api/delete-tester/:id", (req,res,next) => {
       message: "Tester deleted"
     });
   })
-  .catch(err => {
-    res.status(200).json({
-      message: "Delete tester fail"})
-    })
-  }
+})
+
+
 //Dylan's Blocks
 
 app.post("/api/newPatient", (req, res, next) =>{
@@ -191,16 +188,15 @@ app.post("/api/newPatient", (req, res, next) =>{
     name: req.body.name,
     patientType: req.body.patientType,
     symptoms: req.body.symptoms,
- });
+   });
 // save patient
-patient.save().then(newPatient => {
-  console.log(patient);
-  res.status(200).json({
-    message: "Patient registered successfully!",
-    patient: newPatient
+  patient.save().then(newPatient => {
+    console.log(patient);
+    res.status(200).json({
+      message: "Patient registered successfully!",
+      patient: newPatient
+    });
   });
-});
-
 });
 
 //add new test
@@ -214,13 +210,13 @@ app.post("/api/newTest", (req, res, next) =>{
     testerID: req.body.testerID
  });
 // save patient
-test.save().then(newTest => {
-  console.log(test);
-  res.status(200).json({
-    message: "Test created successfully!",
-    test: newTest
+  test.save().then(newTest => {
+    console.log(test);
+    res.status(200).json({
+      message: "Test created successfully!",
+      test: newTest
+    });
   });
-});
 
 });
 
@@ -275,7 +271,6 @@ app.get("/api/testkits/:id", (req,res,next) => {
 })
 
 app.put("/api/update-testkit/:id", (req,res,next) => {
-    console.log(req.body);
     TestKit.updateOne({_id:req.params.id},{stock:req.body.stock})
     .then(result =>{
       res.status(200).json({
@@ -284,4 +279,4 @@ app.put("/api/update-testkit/:id", (req,res,next) => {
     })
 })
 
-
+module.exports = app;

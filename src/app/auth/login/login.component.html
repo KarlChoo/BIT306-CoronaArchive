@@ -1,6 +1,10 @@
-<mat-card class="login-container mat-elevation-z4">
+<div id="background">
+<mat-toolbar id="header">
+  <span id="logo" >CoronArchive</span>
+</mat-toolbar>
+  <mat-card class="login-container mat-elevation-z4">
   <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
+    <mat-card-title >Welcome to CoronaArchive</mat-card-title>
   </mat-card-header>
   <form #postForm="ngForm" (submit)="onLogin(postForm)" ngNativeValidate>
     <mat-card-content>
@@ -19,4 +23,8 @@
         <button id="login-btn" mat-raised-button color="primary" type="submit">Login</button>
     </mat-card-actions>
   </form>
+  <div align="center">
+    <img src="../../../assets/favicon.ico" height="100px" width="100px">
+  </div>
 </mat-card>
+</div>

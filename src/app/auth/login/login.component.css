@@ -13,3 +13,18 @@
 #login-btn{
   width: 100%;
 }
+
+#background{
+  background: lightblue url("../../../assets/login-bg.jpg") no-repeat fixed center;
+  background-size: 100% auto;
+  height: 100vh;
+  opacity: 0.9;
+}
+
+#header{
+  position: fixed;
+  background-color: #fff;
+  z-index:10!important;
+  border-bottom: 3px solid #0097a7ce;
+  opacity: 0.9;
+}

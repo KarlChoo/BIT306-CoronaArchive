@@ -64,6 +64,7 @@ export class TestCentreOfficerService {
       )
 
       .subscribe(mappedTester => {
+          console.log(mappedTester);
           alert("New tester with username " + mappedTester.username + " has been added")
           this.testerList.push(mappedTester);
           this.testersUpdated.next(this.testerList);

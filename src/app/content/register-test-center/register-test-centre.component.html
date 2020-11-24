@@ -9,7 +9,8 @@
       <mat-card-content>
         <mat-form-field appearance="outline">
           <mat-label>Center name</mat-label>
-          <input matInput ngModel #centreName="ngModel" type="text" name="centreName" placeholder="Centre name" required [disabled]="this.newCentre">
+          <input matInput ngModel #centreName="ngModel" type="text" name="centreName" placeholder="Centre name"
+            required [disabled]="this.newCentre">
           <mat-error *ngIf="centreName.invalid">Enter a name</mat-error>
         </mat-form-field>
         <mat-label *ngIf="this.newCentre">Test Centre ID: {{this.newCentre.centreId}}</mat-label>

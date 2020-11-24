@@ -73,10 +73,6 @@ export class TestCenterService {
   }*/
 
   addNewTestCenter(centreName: string, currentUser: any){
-      //this.testCentreList.push(newTestCenter);
-      //const testCentre: Centre = {centreID: null,centreName: newTestCenter.centreName};
-      //this.testCentreList.push(newTestCenter);
-      //this.testCentreListUpdated.next([...this.testCentreList]);
       const newTestCentre: Centre = {
         centreId:  null,
         centreName: centreName,

@@ -38,13 +38,17 @@ export class AuthService {
     this.userType = null;
   }
 
+  getCredentials(){
+    this.authStatusListener.next(
+      {
+        token: this.getToken(),
+        user: this.getUser(),
+        userType: this.getUserType()
+      }
+     )
+  }
+
   validateManagerAccess(){
-    /*
-    if(!this.getToken() || this.getUserType() !== "manager"){
-      alert("Inavlid access, please login again")
-      this.router.navigate(["/login"]);
-    }
-    */
     if(!this.getUser().centreId){
       alert("Please register a centre name first")
       this.router.navigate(["/register"]);
@@ -60,6 +64,8 @@ export class AuthService {
           const user = response.user
           this.token = token;
           this.user = user
+
+          console.log(this.token);
 
 
           let userType;
