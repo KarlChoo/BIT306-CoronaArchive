@@ -33,7 +33,7 @@ export class ReportComponent implements OnInit,AfterViewInit {
     this.reportSub = this.reportService.getUpdatedTestsListener()
       .subscribe((tests: any) => {
         this.dataSource.data = tests;
-        this.dataSource.paginator = this.paginator;
+        //this.dataSource.paginator = this.paginator;
     })
 
     this.breakpoint = (window.innerWidth <= 1000) ? 1 : 3;
