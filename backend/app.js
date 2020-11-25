@@ -231,9 +231,18 @@ app.get('/api/patients',(req,res,next) => {
 });
 
 //get pending tests
-//Test centre related API
 app.get("/api/pendingTests", (req, res, next)=>{
   Test.find({status: "Pending"}).then(document => {
+    res.status(200).json({
+      message: "Pending Tests fetched successfully.",
+      pTests: document
+    });
+  })
+})
+
+//get pending tests based on id
+app.get("/api/pendingTests/:id", (req, res, next)=>{
+  Test.find({status: "Pending", testerID:req.params.id}).then(document => {
     res.status(200).json({
       message: "Pending Tests fetched successfully.",
       pTests: document
@@ -309,7 +318,7 @@ app.get("/api/allCentreTests/:id", (req,res,next) => {
       })
       return testerIds;
   }).then(testerIds => {
-    console.log(testerIds);
+    //console.log(testerIds);
     Test.find({testerID: {$in: testerIds}}).then(documents => {
       res.status(200).json({
         message: "Test Centre tests got successfully",

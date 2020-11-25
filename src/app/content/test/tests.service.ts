@@ -100,7 +100,7 @@ export class TestsService {
   }
 
   getPendingTests(){
-    this.http.get<{message: string, pTests: any}>('http://localhost:3000/api/pendingTests')
+    this.http.get<{message: string, pTests: any}>('http://localhost:3000/api/pendingTests/' + this.authService.getUser()._id)
     .pipe(map(testData => {
       return testData.pTests.map(test => {
         return {
