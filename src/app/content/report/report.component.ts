@@ -33,6 +33,7 @@ export class ReportComponent implements OnInit,AfterViewInit {
     this.reportSub = this.reportService.getUpdatedTestsListener()
       .subscribe((tests: any) => {
         this.dataSource.data = tests;
+       // this.dataSource.data = this.testList;
         this.dataSource.paginator = this.paginator;
     })
 
