@@ -8,8 +8,6 @@ import { AuthData } from "../model/auth-data.model";
   providedIn: 'root'
 })
 export class AuthService {
-
-
   private token: string;
   private user: any;
   private userType: string;
