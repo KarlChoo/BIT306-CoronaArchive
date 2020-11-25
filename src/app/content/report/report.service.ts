@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Test } from "../../model/Test.model";
 
@@ -15,6 +16,8 @@ export class ReportService {
   private dailyCase:number = 56;
   private monthlyPatients:number = 1289;
   private kitCount:number = 468;
+
+  private updatedTests = new Subject<Test[]>();
 
   getAllTests(){
     return this.testList;
@@ -32,32 +35,31 @@ export class ReportService {
     return this.kitCount;
   }
 
+  getUpdatedTestsListener(){
+    return this.updatedTests.asObservable();
+  }
+
   getAllCentreTest(centreId: string){
-      //Get all testers first
-      /*
-      this.http.get<{message:string, testers: any}>("http://localhost:3000/api/testers/" + centreId)
-      .pipe(map(testerData => {
-        return testerData.testers.map(tester => {
-          return {
-            userId: tester._id,
-            username: tester.username,
-            password: tester.password,
-            name: tester.name,
-            position: tester.position
-          }
-        })
-      }))
-      .subscribe(testerList =>{
-          const testers = testerList
-          this.http.get<{message: string, centreTests: any}>("http://localhost:3000/api/allCentreTests", testers)
-            .subscribe(responseData => {
-                console.log(responseData);
-            })
-      })
-      */
-      this.http.get<{message: string, centreTests: any}>("http://localhost:3000/api/allCentreTests/" + centreId)
+      this.http.get<{message: string, tests: any}>("http://localhost:3000/api/allCentreTests/" + centreId)
+        .pipe(map(testsData => {
+          return testsData.tests.map(testData => {
+            return {
+              testId: testData._id,
+              testDate: testData.testDate,
+              username: testData.username,
+              patientType: testData.patientType,
+              symptom: testData.symptom,
+              status: testData.status,
+              result: testData.result,
+              resultDate: testData.resultDate,
+              testerID: testData.testerID
+            }
+          })
+        }))
         .subscribe(responseData => {
           console.log(responseData);
+          this.testList = responseData;
+          this.updatedTests.next(this.testList);
       })
   }
 }
