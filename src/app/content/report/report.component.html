@@ -31,7 +31,7 @@
   </mat-card-header>
   <mat-card-content>
     <p *ngIf="this.testList.length == 0" style="text-align: center; margin-top: 10px;">No Test has been conducted yet.</p>
-    <table id="updateTestTable" mat-table [dataSource]="dataSource" *ngIf="this.testList.length > 0" class="mat-elevation-z8">
+    <table id="updateTestTable" mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
       <!-- TestID Column -->
       <ng-container matColumnDef="testId">
         <th mat-header-cell *matHeaderCellDef> Test ID </th>
